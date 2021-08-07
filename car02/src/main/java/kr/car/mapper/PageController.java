@@ -1,4 +1,4 @@
-package kr.car.web;
+package kr.car.mapper;
 
 import javax.inject.Inject;
 
