@@ -20,6 +20,27 @@ public class PageController {
 		
 	}
 	
+	@RequestMapping("/basic1.do")
+	public void basic1() {	
+	}
+	
+	@RequestMapping("/basic2.do")
+	public void basic2() {	
+	}
+	
+	@RequestMapping("/basic3.do")
+	public void basic3() {
+	}
+	
+	@RequestMapping("/register.do")
+	public void register() {
+	}
+	
+	@RequestMapping("/table.do")
+	public void table() {
+	}
+	
+	
 	
 	@GetMapping("/login.do")
 	public String boardList() {

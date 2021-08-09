@@ -111,7 +111,7 @@ a {
   -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  border-bottom: dotted 1px;
+  
   color: #12CBC4;
   text-decoration: none; }
   a:hover {
@@ -1210,6 +1210,45 @@ input[type="radio"] + label:before {
     font-weight: 900; }
   .icon.brands:before {
     font-family: 'Font Awesome 5 Brands'; }
+/* 기사 Image */
+.aimage{
+	border-radius: 0.375em;
+  border: 0;
+  display: inline-block;
+  position: relative; 
+  width: 100px;
+  height: auto;
+  
+  }
+  .image img {
+    border-radius: 0.375em;
+    display: block; }
+  .image.left, .image.right {
+    max-width: 40%; }
+    .image.left img, .image.right img {
+      width: 100%; }
+  .image.left {
+    float: left;
+    padding: 0 1.5em 1em 0;
+    top: 0.25em; }
+  .image.right {
+    float: right;
+    padding: 0 0 1em 1.5em;
+    top: 0.25em; }
+  .image.fit {
+    display: block;
+    margin: 0 0 2em 0;
+    width: 100%; }
+    .image.fit img {
+      width: 100%; }
+  .image.main {
+    display: block;
+    margin: 0 0 3em 0;
+    width: 100%; }
+    .image.main img {
+      width: 100%; }
+	
+}
 
 /* Image */
 .image {
@@ -1479,6 +1518,8 @@ table {
     table.alt tfoot {
       border-top: 0; }
 
+
+
 /* Button */
 input[type="submit"],
 input[type="reset"],
@@ -1516,15 +1557,17 @@ button,
   input[type="button"]:hover,
   button:hover,
   .button:hover {
-  /* Q1 빨강색 어디에 쓰이는 거야? submit, reset, button 3개에 적용인데? 
+  /* Q1 elements페이지에서 쓰였다.
+  빨강색 어디에 쓰이는 거야? submit, reset, button 3개에 적용인데? 
   다홍색 - rgba(245, 106, 106)를  청록색 - rgba(18, 203, 196)로 바꿨다. */
-    background-color: rgba(18, 203, 196, 0.05); }
+    background-color: rgba(18, 203, 196, 0.25); }
   input[type="submit"]:active,
   input[type="reset"]:active,
   input[type="button"]:active,
   button:active,
   .button:active {
-    background-color: rgba(18, 203, 196, 0.15); }
+  /* nav에 있는 more버튼 */
+    background-color: rgba(18, 203, 196, 0.3); }
   input[type="submit"].icon:before,
   input[type="reset"].icon:before,
   input[type="button"].icon:before,
@@ -1776,8 +1819,12 @@ button,
       display: block;
       margin: 0 0 2em 0; }
       .posts article .image img {
-        display: block;
-        width: 100%; }
+           
+    		display: block;
+   			width: 400px;
+   			height: 300px;
+   			
+    	}
   @media screen and (min-width: 1681px) {
     .posts article:nth-child(3n + 1):before {
       display: none; }
@@ -2131,7 +2178,7 @@ button,
     -webkit-flex-shrink: 1;
     -ms-flex-shrink: 1;
     flex-shrink: 1;
-    width: 50%; }
+    width: 70%; }
   #banner .image {
     -moz-flex-grow: 0;
     -webkit-flex-grow: 0;
@@ -2143,9 +2190,11 @@ button,
     flex-shrink: 0;
     display: block;
     margin: 0 0 2em 4em;
-    width: 50%; }
+    width: 30%; }
     #banner .image img {
       height: 100%;
+      /* 배너 안에 있는 이미지 여기에서 센터 처리 안되나?ㅠㅠ 위에도 조절 했는데 왜 인식 안됨? */
+      /* text-align:center; */
       -moz-object-fit: cover;
       -webkit-object-fit: cover;
       -ms-object-fit: cover;
