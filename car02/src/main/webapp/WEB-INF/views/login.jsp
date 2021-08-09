@@ -10,26 +10,8 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(document).ready(()=>{
-	list();
-});
 
-function loginFn(){
-	var memberid=$("#memberid").val();//하나씩 가지고 오기
-	var password=$("#password").val();
-	$.ajax({
-	      url:"/loginFunction.do",
-	      type : "post",
-	      data : {"memberid":memberid,"password":password},
-	      success : function(data) {
-		       if(data=="no"){
-		    	   alert("회원인증에 실패했습니다.");  
-		       } else{
-		    	   location.href="main.jsp";
-		       }		      },
-	      error : function(){alert("error"); }
-	   });
-}
+
 function logoutFn(){
 	$.ajax({
 		url:"ajaxlogout.do",
@@ -76,8 +58,8 @@ function logoutFn(){
 				
 			</div>
 			<div class="card-body">
-			<c:if test="${sessionScope.MemberVO==null}">
-				<form>
+			
+				<form action="${cpath}/loginAjax.do" method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -91,17 +73,12 @@ function logoutFn(){
 						</div>
 						<input type="password" class="form-control" placeholder="비밀번호" id=password>
 					</div>
-				
-					
-					<div class="row align-items-center remember">
-						<input type="checkbox">계정 저장하기
-					</div>
 					<br>
 					<div class="form-group">
-						<input type="submit" value="로그인" class="btn btn-sm float-right login_btn" onclick="loginFn()">
+						<input type="submit" value="로그인" class="btn btn-sm float-right login_btn" >
 					</div>
 				</form>
-			</c:if>
+			
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">

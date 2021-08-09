@@ -20,7 +20,7 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 
 	
 	//로그인 매핑
-	public List<MemberVO> loginFunction(MemberVO vo);
+	public MemberVO loginFunction(MemberVO vo);
 	
 
 	
