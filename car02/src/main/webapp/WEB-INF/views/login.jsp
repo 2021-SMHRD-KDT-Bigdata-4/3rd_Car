@@ -7,8 +7,12 @@
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<<script type="text/javascript">
+<script type="text/javascript">
+$(document).ready(()=>{
+	list();
+});
 
 function loginFn(){
 	var memberid=$("#memberid").val();//하나씩 가지고 오기
@@ -22,7 +26,7 @@ function loginFn(){
 		    	   alert("회원인증에 실패했습니다.");  
 		       } else{
 		    	   location.href="main.jsp";
-		       }		      },\
+		       }		      },
 	      error : function(){alert("error"); }
 	   });
 }
@@ -72,6 +76,7 @@ function logoutFn(){
 				
 			</div>
 			<div class="card-body">
+			<c:if test="${sessionScope.MemberVO==null}">
 				<form>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
@@ -96,6 +101,7 @@ function logoutFn(){
 						<input type="submit" value="로그인" class="btn btn-sm float-right login_btn" onclick="loginFn()">
 					</div>
 				</form>
+			</c:if>
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
