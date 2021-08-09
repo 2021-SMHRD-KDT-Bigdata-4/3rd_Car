@@ -59,7 +59,7 @@ public class PageController {
 			HttpSession session = request.getSession();
 			session.setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
 		}
-		return "main";
+		return "usermain";
 	}
 
 }
