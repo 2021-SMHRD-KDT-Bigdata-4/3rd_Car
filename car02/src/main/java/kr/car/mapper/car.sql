@@ -151,3 +151,5 @@ insert into alarmtype values('1','졸음알림');
 insert into alarmtype values('2','휴식알림');
 insert into alarmtype values('3','졸음지속알림');
         
+ 
+ 

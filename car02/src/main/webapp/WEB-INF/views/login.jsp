@@ -2,15 +2,46 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <c:set var="cpath" value="${pageContext.request.contextPath}"/>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<<script type="text/javascript">
+
+function loginFn(){
+	var memberid=$("#memberid").val();//하나씩 가지고 오기
+	var password=$("#password").val();
+	$.ajax({
+	      url:"/loginFunction.do",
+	      type : "post",
+	      data : {"memberid":memberid,"password":password},
+	      success : function(data) {
+		       if(data=="no"){
+		    	   alert("회원인증에 실패했습니다.");  
+		       } else{
+		    	   location.href="main.jsp";
+		       }		      },\
+	      error : function(){alert("error"); }
+	   });
+}
+function logoutFn(){
+	$.ajax({
+		url:"ajaxlogout.do",
+		type:"get",
+		success:function(){
+			 location.href="ajax04.jsp";
+		},
+	    error:function(){ alert("error"); }
+		
+	});
+}
+</script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+
 	<title>Login Page</title>
    <!--Made with love by Mutiullah Samim -->
    
@@ -46,14 +77,14 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="아이디">						
+						<input type="text" class="form-control" placeholder="아이디" id=memberid>						
 					</div>
 					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="비밀번호">
+						<input type="password" class="form-control" placeholder="비밀번호" id=password>
 					</div>
 				
 					
@@ -62,7 +93,7 @@
 					</div>
 					<br>
 					<div class="form-group">
-						<input type="submit" value="로그인" class="btn btn-sm float-right login_btn">
+						<input type="submit" value="로그인" class="btn btn-sm float-right login_btn" onclick="loginFn()">
 					</div>
 				</form>
 			</div>

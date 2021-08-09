@@ -3,6 +3,8 @@
 <configuration>
 	
 	<typeAliases>
+	    <typeAlias type="kr.car.domain.MemberVO" alias="memberVO"/>
+	    
 		<!-- <typeAlias type="kr.smhrd.domain.BoardVO" alias="boardVO"/>
 		<typeAlias type="kr.smhrd.domain.SearchVO" alias="searchVO"/> -->
 	</typeAliases>
