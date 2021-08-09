@@ -7,11 +7,10 @@
     <select id="loginFunction" parameterType="memberVO" resultType="memberVO">
 	 SELECT*from member where memberid=#{memberid} and password=#{password}
 	</select>
-
-    
-    <delete id="boardDelete" parameterType="int">
-        delete from tbl_board where idx=#{idx}
-    </delete>
-    
+	
+    <insert id="drive" parameterType="memberVO">
+      insert into drive(drivestart,memberid) values(now(),#{memberid});     
+    </insert>
+   
     
 </mapper>

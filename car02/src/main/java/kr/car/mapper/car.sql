@@ -51,7 +51,7 @@ CREATE TABLE drive (
     drivestart  datetime NOT NULL default now(),
     driveend    datetime,
     memberid    VARCHAR(50) NOT NULL,
-    habitid     VARCHAR(20) NOT NULL,
+    habitid     VARCHAR(20),
     primary key(driveid)
 );
 
@@ -152,4 +152,15 @@ insert into alarmtype values('2','휴식알림');
 insert into alarmtype values('3','졸음지속알림');
         
  
- 
+--drive 실험
+insert into drive(drivestart,memberid) values(now(),'s0156');
+UPDATE drive SET driveend = now() WHERE driveend is null ;
+
+
+
+
+select*from drive;
+
+
+
+

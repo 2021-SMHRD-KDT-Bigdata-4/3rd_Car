@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 
 <!--
@@ -26,22 +28,22 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.html" class="logo"><strong>당신의 안전을 책임지는  co-car</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp신근아님 환영합니다.</a>
+									<a  class="logo"><strong>당신의 안전을 책임지는  co-car</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp " ${vo.username}"님 환영합니다.</a>
 									<ul class="icons">
-										<li><a href="login.jsp">Login / Logout</a></li>
+										<li><a href="${cpath}/logoutAjax.do"> Logout</a></li>
 									</ul>
 								</header>
 
 							<!-- Banner -->
 								<br/>
 							    <div class="content">
-							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">운전 시작</a>&nbsp&nbsp&nbsp
-							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">운전 종료</a>&nbsp&nbsp&nbsp
+							    	<input  type="submit" class="button big" style="font-size: 12px" value="운전시작" >&nbsp&nbsp&nbsp
+							    	<input  type=button class="button big" style="font-size: 12px"  value="운전종료">&nbsp&nbsp&nbsp
 							    
 							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 시작</a>&nbsp&nbsp&nbsp
 							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 종료</a>
 							    </div>
-							   
+				   
 								<br/>
 								<br/>
 								<br/>

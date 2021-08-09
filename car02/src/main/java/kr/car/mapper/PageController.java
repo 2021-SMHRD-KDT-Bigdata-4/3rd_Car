@@ -61,5 +61,15 @@ public class PageController {
 		}
 		return "usermain";
 	}
+	
+	//로그아웃
+	@RequestMapping(value ="/logoutAjax.do", method = RequestMethod.GET)
+		public String logout(HttpSession session) {
+			 session.invalidate();
+			 return "login";
+			 
+		}
+
+
 
 }
