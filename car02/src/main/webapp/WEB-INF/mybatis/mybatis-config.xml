@@ -4,10 +4,28 @@
 	
 	<typeAliases>
 	    <typeAlias type="kr.car.domain.MemberVO" alias="memberVO"/>
+	    <typeAlias type="kr.car.domain.AlarmVO" alias="alarmVO"/>
+	    <typeAlias type="kr.car.domain.AlarmtypeVO" alias="alarmtypeVO"/>
+	    <typeAlias type="kr.car.domain.DriveVO" alias="driveVO"/>
+	    <typeAlias type="kr.car.domain.HabitVO" alias="habitVO"/>
+	    <typeAlias type="kr.car.domain.RestVO" alias="restVO"/>
+	    <typeAlias type="kr.car.domain.RestareaVO" alias="restareaVO"/>
 	    
 		<!-- <typeAlias type="kr.smhrd.domain.BoardVO" alias="boardVO"/>
 		<typeAlias type="kr.smhrd.domain.SearchVO" alias="searchVO"/> -->
 	</typeAliases>
 	
+	<!-- 
+	<environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>                 
+      </dataSource>
+    </environment>
+  </environments> -->
 	
 </configuration>

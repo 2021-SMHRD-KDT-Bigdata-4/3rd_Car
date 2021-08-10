@@ -63,7 +63,7 @@ CREATE TABLE rest (
     restid     int NOT NULL auto_increment,
     reststart  datetime NOT NULL default now(),
     restend    datetime,
-    driveid    int NOT NULL,
+    driveid    int,
     primary key(restid)
 );
 
@@ -156,11 +156,11 @@ insert into alarmtype values('3','졸음지속알림');
 insert into drive(drivestart,memberid) values(now(),'s0156');
 UPDATE drive SET driveend = now() WHERE driveend is null ;
 
-
-
-
 select*from drive;
 
 
+--rest 실험
+insert into rest(reststart,driveid) values(now(),'1');
+UPDATE rest SET restend = now() WHERE restend is null ;
 
-
+select*from rest;

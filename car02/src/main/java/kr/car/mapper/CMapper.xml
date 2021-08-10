@@ -8,9 +8,20 @@
 	 SELECT*from member where memberid=#{memberid} and password=#{password}
 	</select>
 	
-    <insert id="drive" parameterType="memberVO">
+    <select id="driveList" resultType="driveVO">
+        select * from drive
+    </select>
+    
+    <select id="restList" resultType="restVO">
+        select * from rest
+    </select>
+    
+    <insert id="dstart" parameterType="memberVO">
       insert into drive(drivestart,memberid) values(now(),#{memberid});     
     </insert>
-   
+    
+    <update id="dend" parameterType="memberVO">
+	 update drive set driveend = now() where driveend is null;
+	</update>
     
 </mapper>

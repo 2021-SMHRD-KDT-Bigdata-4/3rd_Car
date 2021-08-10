@@ -1,14 +1,21 @@
 package kr.car.mapper;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.car.domain.DriveVO;
 import kr.car.domain.MemberVO;
+import kr.car.domain.RestVO;
 
 //POJO
 @Controller
@@ -16,6 +23,7 @@ public class PageController {
 
 	@Inject
 	private CMapper CMapper;
+	
 
 	@RequestMapping("/main.do")
 	public void main() {
@@ -46,6 +54,21 @@ public class PageController {
 	public void login() {
 
 	}
+	@RequestMapping("/useralarm1.do")
+	public void useralarm1() {
+	}
+	
+	@RequestMapping("/usermain.do")
+	public void usermain(Model model) {
+			//System.out.println("1");
+		   List<DriveVO> list=CMapper.driveList(); 		
+		   model.addAttribute("list", list); // 객체바인딩->ModelAndView->Model(*)
+		   //return "boardList"; //  -->ViewResolver--->/WEB-INF/views/boardList.jsp
+		   //System.out.println("2");
+		   
+		  
+		   
+	}
 
 	@RequestMapping(value = "/loginAjax.do", method = RequestMethod.POST)
 	public String loginFunction(MemberVO vo, HttpServletRequest request) {
@@ -59,7 +82,7 @@ public class PageController {
 			HttpSession session = request.getSession();
 			session.setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
 		}
-		return "usermain";
+		return "redirect:/usermain.do";
 	}
 	
 	//로그아웃
@@ -69,7 +92,27 @@ public class PageController {
 			 return "login";
 			 
 		}
-
-
-
+		/*
+		 * @GetMapping("/driveList.do") public void driveList(Model model) {
+		 * System.out.println("1"); List<DriveVO> list=CMapper.driveList();
+		 * model.addAttribute("list", list); // 객체바인딩->ModelAndView->Model(*) //return
+		 * "boardList"; // -->ViewResolver--->/WEB-INF/views/boardList.jsp
+		 * System.out.println("2"); }
+		 */
+	
+		
+	@PostMapping("/dstart.do")
+	public String dstart(DriveVO vo) {
+		CMapper.dstart(vo);
+		return "redirect:/usermain.do";
+	}
+	
+	@PostMapping("/dend.do")
+	public String dend(DriveVO vo) {
+		CMapper.dend(vo);
+		return "redirect:/usermain.do";
+	}
+	
+	
+	
 }

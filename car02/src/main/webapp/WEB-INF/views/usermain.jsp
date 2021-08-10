@@ -15,7 +15,31 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="resources/assets/css/index.css" />
+		<script type="text/javascript">
 		
+		function godstart(){
+	    	$.ajax({
+	    		url : "${cpath}/boardListAjax.do",
+	    		type : "get",
+	    		dataType : "json",
+	    		success : dstart,
+	    		error : function(){ alert("error"); }    		
+	    	});  
+	      }
+
+		function dstart(){
+			$.ajax({
+				url : "${cpath}/dstart.do",
+				type : "post",
+				//dataType : "json",
+				success : "usermain.jsp",
+				error : function(){ alert("usermainpage error"); }
+			});
+		}
+		//위에 db정보가 들어가면 화면에서 보여주게 하는 코드 밑에 적어야 한다.
+		
+		
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -37,75 +61,66 @@
 							<!-- Banner -->
 								<br/>
 							    <div class="content">
-							    	<input  type="submit" class="button big" style="font-size: 12px" value="운전시작" >&nbsp&nbsp&nbsp
-							    	<input  type=button class="button big" style="font-size: 12px"  value="운전종료">&nbsp&nbsp&nbsp
-							    
-							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 시작</a>&nbsp&nbsp&nbsp
-							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 종료</a>
+							    	<input  type="button" class="button big" style="font-size: 12px" value="운전시작" onclick="godstart()">&nbsp&nbsp&nbsp
+							    	<input  type="button" class="button big" style="font-size: 12px"  value="운전종료" onclick="godend()">&nbsp&nbsp&nbsp
+							    	
+							    	<input  type="button" class="button big" style="font-size: 12px" value="휴식시작" >&nbsp&nbsp&nbsp
+							    	<input  type="button" class="button big" style="font-size: 12px"  value="휴식종료">&nbsp&nbsp&nbsp
+							    	
+							    	<!-- <a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 시작</a>&nbsp&nbsp&nbsp
+							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 종료</a> -->
 							    </div>
 				   
-								<br/>
-								<br/>
-								<br/>
-								
 
 							<!-- Section -->
-								  
+								  <section>
 									<header class="major">
 										<h2>졸음 운전 알람</h2>
 									</header>
 									
-									<!-- Advanced Tables -->
+									<!-- Advanced Tables --><!-- 여기서부터 우리가 원하는 표 -->
                     <div class="card">
-                       
                         <div class="card-content">
-<!-- 여기서부터 우리가 원하는 표 -->
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    
                                     <thead>
                                         <tr>
-                                            <th>날짜</th>
+                                            <th>운전 번호</th>
                                             <th>운전 시작시간</th>
                                             <th>운전 종료 시간</th>
-                                            <th>졸음 운전 알람 횟수</th>
-                                            <th>비   고</th>
-                                            
+                                            <th>운전시간</th>
+                                            <th>졸음 운전 알람 횟수</th>      
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center">C</td>
-                                        </tr>
+                                    <c:forEach var="vo" items="${list}">
+        							<tr>
+          								<td>${vo.driveid}</td>
+           								<td>${vo.drivestart}</a></td>
+           								<td>${vo.driveend}</td>
+           								<td> 비고</td>
+           								<td>비고</td>
+        							</tr>
+      								</c:forEach>
                                     </tbody>
+                                    
                                 </table>
-                            </div>
- <!-- 여기까지가 표다!! -->
-                            
+                            </div>                  
                         </div>
                     </div>
                     <!--End Advanced Tables -->
-				
+                    <br />
+				</section>
 				
 				<!-- 버튼 2 css에 이거 넣기!
 				float : right;
  				margin-right : 50px;
 				 -->
 									
-								
-								
-								
-<!-- 두 번째 표 구역 -->
+			
+					<!-- 두 번째 표 구역 -->
 								<section>
 									<header class="major">
 										<h2>휴식 시간 알람</h2>
@@ -120,73 +135,27 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>날짜</th>
+                                            <th>휴식 번호</th>
                                             <th>휴식 시작시간</th>
                                             <th>휴식 종료시간</th>
-                                            <th>휴식 총 알람 횟수</th>
+                                            <th>휴식시간</th>
                                             <th>비   고</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center">C</td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.5</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5.5</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 6</td>
-                                            <td>Win 98+</td>
-                                            <td class="center">6</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 7</td>
-                                            <td>Win XP SP2+</td>
-                                            <td class="center">7</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>Trident</td>
-                                            <td>AOL browser (AOL desktop)</td>
-                                            <td>Win XP</td>
-                                            <td class="center">6</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>Gecko</td>
-                                            <td>Firefox 1.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.7</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>Gecko</td>
-                                            <td>Firefox 1.5</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        
-                                    
+                                    <c:forEach var="vo" items="${list}">
+        							<tr>
+          								<td>${vo.driveid}</td>
+           								<td>${vo.drivestart}</a></td>
+           								<td>${vo.driveend}</td>
+           								<td> 비고</td>
+           								<td>비고</td>
+        							</tr>
+      								</c:forEach>
                                     </tbody>
+                                    
+                                    
+                                    
                                 </table>
                                                 
                                     <br/>
