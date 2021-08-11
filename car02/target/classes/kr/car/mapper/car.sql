@@ -1,166 +1,162 @@
 create database sleep
 show databases
 
-DROP TABLE alarm cascade;
-DROP TABLE alarmtype cascade;
-DROP TABLE rest  cascade;
-DROP TABLE restarea  cascade;
-DROP TABLE drive cascade;
-DROP TABLE habit cascade;
-DROP TABLE member  cascade;
 
+DROP TABLE HABITS cascade;
+DROP TABLE RESTS cascade;
+DROP TABLE ALARMS  cascade;
+DROP TABLE ALARMTYPES  cascade;
+DROP TABLE DRIVINGS  cascade;
+DROP TABLE RESTAREAS cascade;
+DROP TABLE MEMBERS  cascade;
 
---알람종류
-CREATE TABLE alarmtype (
-    alarmtpyeid    VARCHAR(30) NOT NULL,
-    alarmtpyename  VARCHAR(30) NOT NULL
+-- =======================테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- MEMBERS Table Create SQL
+CREATE TABLE MEMBERS
+(
+    `MEMBER_ID`    VARCHAR(100)    NOT NULL    COMMENT '회원아이디', 
+    `PASSWORD`     VARCHAR(100)    NULL        COMMENT '암호', 
+    `MEMBER_NAME`  VARCHAR(100)    NULL        COMMENT '회원명', 
+    `GENDER`       VARCHAR(1)      NULL        COMMENT '성별', 
+    `COMPANY`      VARCHAR(100)    NULL        COMMENT '소속회사', 
+    `AGE`          INT             NULL        COMMENT '나이', 
+    `MEMBER_NOTE`  VARCHAR(100)    NULL        COMMENT '회원메모', 
+     PRIMARY KEY (MEMBER_ID)
 );
 
-ALTER TABLE alarmtype ADD CONSTRAINT alarmtype_pk PRIMARY KEY ( alarmtpyeid );
+ALTER TABLE MEMBERS COMMENT '회원정보';
 
---회원
-CREATE TABLE member (
-    memberid  VARCHAR(50) NOT NULL,
-    password  VARCHAR(50) NOT NULL,
-    username  VARCHAR(50) NOT NULL,
-    gender   int  NOT NULL,
-    company   VARCHAR(50) NOT NULL,
-    age       int NOT NULL
+-- RESTAREAS Table Create SQL
+CREATE TABLE RESTAREAS
+(
+    `RESTAREA_ID`    INT             NOT NULL    AUTO_INCREMENT COMMENT '휴게소아이디', 
+    `RESTAREA_NAME`  VARCHAR(100)    NULL        COMMENT '휴게소명', 
+    `LATITUDE`       FLOAT           NULL        COMMENT '위도', 
+    `LONGITUDE`      FLOAT           NULL        COMMENT '경도', 
+    `FACILITIES`     VARCHAR(100)    NULL        COMMENT '편의시설', 
+     PRIMARY KEY (RESTAREA_ID)
 );
 
-ALTER TABLE member ADD CONSTRAINT member_pk PRIMARY KEY ( memberid );
+ALTER TABLE RESTAREAS COMMENT '휴게소정보';
 
 
-
---알람
-CREATE TABLE alarm (
-    alarmid        int NOT NULL auto_increment,
-    alarmtime      DATE NOT NULL,
-    alarmlocation  VARCHAR(30) NOT NULL,
-    memberid       VARCHAR(50) NOT NULL,
-    alarmtpyeid    VARCHAR(30) NOT NULL,
-    habitid        VARCHAR(20) NOT NULL,
-    primary key(alarmid)
+-- DRIVINGS Table Create SQL
+CREATE TABLE DRIVINGS
+(
+    `DRIVING_ID`         INT             NOT NULL    AUTO_INCREMENT COMMENT '운전아이디', 
+    `DRIVING_STARTTIME`  DATETIME        NULL        COMMENT '운전출발시간', 
+    `DRIVING_ENDTIME`    DATETIME        NULL        COMMENT '운전종료시간', 
+    `MEMBER_ID`          VARCHAR(100)    NOT NULL    COMMENT '회원아이디', 
+    `HABIT_ID`           INT             NULL        COMMENT '습관아이디', 
+     PRIMARY KEY (DRIVING_ID)
 );
 
+ALTER TABLE DRIVINGS COMMENT '운전정보';
+
+ALTER TABLE DRIVINGS
+    ADD CONSTRAINT FK_DRIVINGS_MEMBER_ID_MEMBERS_MEMBER_ID FOREIGN KEY (MEMBER_ID)
+        REFERENCES MEMBERS (MEMBER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
----운전
-CREATE TABLE drive (
-    driveid     int NOT NULL auto_increment,
-    drivestart  datetime NOT NULL default now(),
-    driveend    datetime,
-    memberid    VARCHAR(50) NOT NULL,
-    habitid     VARCHAR(20),
-    primary key(driveid)
+-- ALARMTYPES Table Create SQL
+CREATE TABLE ALARMTYPES
+(
+    `ALARMTYPE_ID`    INT             NOT NULL    COMMENT '알람타입아이디', 
+    `ALARMTYPE_NAME`  VARCHAR(100)    NULL        COMMENT '알람타입명', 
+     PRIMARY KEY (ALARMTYPE_ID)
 );
 
+ALTER TABLE ALARMTYPES COMMENT '알람타입정보';
 
 
-
--- 휴식
-CREATE TABLE rest (
-    restid     int NOT NULL auto_increment,
-    reststart  datetime NOT NULL default now(),
-    restend    datetime,
-    driveid    int,
-    primary key(restid)
+-- ALARMS Table Create SQL
+CREATE TABLE ALARMS
+(
+    `ARARM_ID`        INT             NOT NULL    AUTO_INCREMENT COMMENT '알람순번', 
+    `ARARM_TIME`      DATETIME        NULL        COMMENT '졸음알람시간', 
+    `ARARM_LOCATION`  VARCHAR(100)    NULL        COMMENT '알람위치', 
+    `MEMBER_ID`       VARCHAR(100)    NOT NULL    COMMENT '회원아이디', 
+    `ARARMTYPE_ID`    INT             NOT NULL    COMMENT '알람타입아이디', 
+    `HABIT_ID`        INT             NULL        COMMENT '습관아이디', 
+     PRIMARY KEY (ARARM_ID)
 );
 
+ALTER TABLE ALARMS COMMENT '알람정보';
 
--- 평균
-CREATE TABLE habit (
-    habitid         VARCHAR(30) NOT NULL,
-    sleepalarmtime  int,
-    drivetime       int,
-    restcount       int,
-    alarmcount     int,
-    primary key(habitid)
+ALTER TABLE ALARMS
+    ADD CONSTRAINT FK_ALARMS_ARARMTYPE_ID_ALARMTYPES_ALARMTYPE_ID FOREIGN KEY (ARARMTYPE_ID)
+        REFERENCES ALARMTYPES (ALARMTYPE_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE ALARMS
+    ADD CONSTRAINT FK_ALARMS_MEMBER_ID_MEMBERS_MEMBER_ID FOREIGN KEY (MEMBER_ID)
+        REFERENCES MEMBERS (MEMBER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- RESTS Table Create SQL
+CREATE TABLE RESTS
+(
+    `REST_ID`         INT         NOT NULL    AUTO_INCREMENT COMMENT '휴식아이디', 
+    `REST_STARTTIME`  DATETIME    NULL        COMMENT '휴식시작시간', 
+    `REST_ENDTIME`    DATETIME    NULL        COMMENT '휴식종료시간', 
+    `HABIT_ID`           INT             NULL        COMMENT '습관아이디', 
+
+     PRIMARY KEY (REST_ID)
 );
 
+ALTER TABLE RESTS COMMENT '휴식정보';
+
+ALTER TABLE RESTS
+    ADD CONSTRAINT FK_RESTS_HABIT_ID FOREIGN KEY (HABIT_ID)
+        REFERENCES HABIT (HABIT_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
--- 휴게소
-CREATE TABLE restarea (
-    areaid      VARCHAR(20) NOT NULL,
-    areaname    VARCHAR(30) NOT NULL,
-    latitude    FLOAT NOT NULL,
-    longitude   FLOAT NOT NULL,
-    facilities  VARCHAR(20) NOT NULL
+
+-- HABITS Table Create SQL
+CREATE TABLE HABITS
+(
+    `HANBIT_ID`             INT             NOT NULL    AUTO_INCREMENT COMMENT '습관아이디', 
+    `DROWSINESS_ALARMTIME`  DATETIME        NULL        COMMENT '졸음알람시간', 
+    `TOTAL_DRIVINGTIME`     INT             NULL        COMMENT '총운전시간', 
+    `REST_COUNT`            INT             NULL        COMMENT '휴식횟수', 
+    `ALARM_COUNT`           INT             NULL        COMMENT '알람횟수', 
+    `MEMBER_ID`             VARCHAR(100)    NOT NULL    COMMENT '회원아이디', 
+     PRIMARY KEY (HANBIT_ID)
 );
 
-ALTER TABLE restarea ADD CONSTRAINT restarea_pk PRIMARY KEY ( areaid );
+ALTER TABLE HABITS COMMENT '나의운전습관정보';
 
-ALTER TABLE alarm
-    ADD CONSTRAINT alarm_alarmtype_fk FOREIGN KEY ( alarmtpyeid )
-        REFERENCES alarmtype ( alarmtpyeid );
+ALTER TABLE HABITS
+    ADD CONSTRAINT FK_HABITS_MEMBER_ID_MEMBERS_MEMBER_ID FOREIGN KEY (MEMBER_ID)
+        REFERENCES MEMBERS (MEMBER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-
-
-ALTER TABLE alarm
-    ADD CONSTRAINT alarm_member_fk FOREIGN KEY ( memberid )
-        REFERENCES member (memberid);
-
-
-ALTER TABLE drive
-    ADD CONSTRAINT drive_member_fk FOREIGN KEY ( memberid )
-        REFERENCES member ( memberid );
-
-ALTER TABLE rest
-    ADD CONSTRAINT rest_drive_fk FOREIGN KEY ( driveid )
-        REFERENCES drive ( driveid );
 
         
-        ALTER TABLE drive
-    ADD CONSTRAINT drive_habit_fk FOREIGN KEY ( habitid )
-        REFERENCES habit( habitid );
-        
-        ALTER TABLE alarm
-    ADD CONSTRAINT alarm_habit_fk FOREIGN KEY ( habitid )
-        REFERENCES habit ( habitid );
+--여기서부터 데이터 넣기
 
-        
-        
-        
-        
------ 인서트문
-
-        
-
--- 회원 넣기
-
-insert into member values('s0156','1234','박윤빈','1','스마트운수','47');
-insert into member values('s0157','1234','노현규','1','스마트운수','33');
-insert into member values('i0157','1234','최성우','1','인재운수','57');
-insert into member values('i0156','1234','김미희','2','인재운수','25');
-
-insert into member values('s0000','1234','스마트운수','3','스마트운수','0');
-insert into member values('i0000','1234','인재운수','3','인재운수','0');
+INSERT INTO MEMBERS VALUES('u1','1234','박윤빈','남','스마트운수','47','');
+INSERT INTO MEMBERS VALUES('11','1234','신근아','여','스마트운수','37','');
+INSERT INTO MEMBERS VALUES('12','1234','고희경','여','스마트운수','27','');
+INSERT INTO MEMBERS VALUES('13','1234','김성은','여','스마트운수','35','');
+INSERT INTO MEMBERS VALUES('14','1234','정종원','여','스마트운수','31','');
+INSERT INTO MEMBERS VALUES('15','1234','주익정','남','스마트운수','35','');
+INSERT INTO MEMBERS VALUES('16','1234','정지윤','여','스마트운수','32','');
+INSERT INTO MEMBERS VALUES('17','1234','최성우','남','스마트운수','33','');
+INSERT INTO MEMBERS VALUES('admin','admin','김은혜','A','스마트운수','27','');
 
 
---휴게소(T:화장실,
-
-insert into restarea  values('r0001','담양','35.26094744','126.9713374','T');
-insert into restarea  values('r0002','광산','35.22389894','126.8269021','T');
-
-
-
--- 알람종류
-
-insert into alarmtype values('1','졸음알림');
-insert into alarmtype values('2','휴식알림');
-insert into alarmtype values('3','졸음지속알림');
-        
- 
 --drive 실험
-insert into drive(drivestart,memberid) values(now(),'s0156');
-UPDATE drive SET driveend = now() WHERE driveend is null ;
+insert into DRIVINGS (DRIVING_STARTTIME, MEMBER_ID) values(now(),'11');
+UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null;
 
-select*from drive;
+select*from DRIVINGS;
 
 
 --rest 실험
-insert into rest(reststart,driveid) values(now(),'1');
-UPDATE rest SET restend = now() WHERE restend is null ;
+insert into RESTS(REST_STARTTIME) values(now());
+UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null ;
 
-select*from rest;
+select*from RESTS;
+
+
+

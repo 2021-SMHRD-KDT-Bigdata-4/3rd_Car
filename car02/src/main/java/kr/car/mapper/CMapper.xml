@@ -4,24 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.car.mapper.CMapper">
     
-    <select id="loginFunction" parameterType="memberVO" resultType="memberVO">
-	 SELECT*from member where memberid=#{memberid} and password=#{password}
+    <select id="loginFunction" parameterType="membersVO" resultType="membersVO">
+	 SELECT*from members where member_id=#{member_id} and password=#{password}
 	</select>
 	
-    <select id="driveList" resultType="driveVO">
-        select * from drive
+    <select id="drivingList" resultType="drivingVO">
+        select * from drivings
     </select>
     
-    <select id="restList" resultType="restVO">
-        select * from rest
+    <select id="restsList" resultType="restsVO">
+        select * from rests
     </select>
     
-    <insert id="dstart" parameterType="memberVO">
-      insert into drive(drivestart,memberid) values(now(),#{memberid});     
+    <insert id="dstart" parameterType="membersVO">
+      insert into drivings(driving_starttime,member_id) values(now(),#{member_id}) where memberid=#{memberid};     
     </insert>
     
-    <update id="dend" parameterType="memberVO">
-	 update drive set driveend = now() where driveend is null;
+    <update id="dend" parameterType="membersVO">
+	 update drivings set driving_endtime = now() where driving_endtime is null;
 	</update>
     
 </mapper>

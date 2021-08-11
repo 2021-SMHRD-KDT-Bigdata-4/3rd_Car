@@ -17,25 +17,18 @@
 		<link rel="stylesheet" href="resources/assets/css/index.css" />
 		<script type="text/javascript">
 		
-		function goDelAjax(index){
-	    	  var idx=$("#idx"+index).text();
-	    	  $.ajax({
-	    		  url : "${cpath}/boardDeleteAjax.do",
-	    		  type : "get",
-	    		  data : {"idx" : idx},
-	    		  success : goJson,
-	    		  error : function(){ alert("error");}
-	    	  });
-	      }
+	
 		function dstart(){
-			var idx=$("#idx"+index).text();
+			//var idx=$("#idx"+index).text();
+			console.log(vo);
 			$.ajax({
 				url : "${cpath}/dstart.do",
 				type : "post",
-				data : vo,
+				data : {"member_id" : vo.member_id},
 				dataType : "json",
 				success : gousermain,
-				error : function(){ alert("dstart error"); }
+				error : function(){ alert("dstart error"); },
+	
 			});
 		}
 		//위에 db정보가 들어가면 화면에서 보여주게 하는 코드 밑에 적어야 한다.
@@ -56,7 +49,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a  class="logo"><strong>당신의 안전을 책임지는  co-car</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp " ${vo.username}"님 환영합니다.</a>
+									<a  class="logo"><strong>당신의 안전을 책임지는  co-car</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp " ${vo.member_name}"님 환영합니다.</a>
 									<ul class="icons">
 										<li><a href="${cpath}/logoutAjax.do"> Logout</a></li>
 									</ul>
@@ -65,7 +58,7 @@
 							<!-- Banner -->
 								<br/>
 							    <div class="content">
-							    	<input  type="button" class="button big" style="font-size: 12px" value="운전시작" onclick="dstart(index)">&nbsp&nbsp&nbsp
+							    	<input  type="button" class="button big" style="font-size: 12px" value="운전시작" onclick="dstart()">&nbsp&nbsp&nbsp
 							    	<input  type="button" class="button big" style="font-size: 12px"  value="운전종료" onclick="godend()">&nbsp&nbsp&nbsp
 							    	
 							    	<input  type="button" class="button big" style="font-size: 12px" value="휴식시작" >&nbsp&nbsp&nbsp
@@ -101,9 +94,9 @@
                                     <tbody>
                                     <c:forEach var="vo" items="${list}">
         							<tr>
-          								<td>${vo.driveid}</td>
-           								<td>${vo.drivestart}</a></td>
-           								<td>${vo.driveend}</td>
+          								<td>${vo.driving_id}</td>
+           								<td>${vo.driving_starttime}</td>
+           								<td>${vo.driving_endtime}</td>
            								<td> 비고</td>
            								<td>비고</td>
         							</tr>
@@ -149,9 +142,9 @@
                                     <tbody>
                                     <c:forEach var="vo" items="${list}">
         							<tr>
-          								<td>${vo.driveid}</td>
-           								<td>${vo.drivestart}</a></td>
-           								<td>${vo.driveend}</td>
+          								<td>${vo.driving_id}</td>
+           								<td>${vo.driving_starttime}</a></td>
+           								<td>${vo.driving_endtime}</td>
            								<td> 비고</td>
            								<td>비고</td>
         							</tr>
@@ -198,8 +191,8 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="usermain.jsp">메인</a></li>
-										<li><span class="useralarm.jsp">알람</span>
+										<li><a href="usermain.do">메인</a></li>
+										<li><span class="useralarm.do">알람</span>
 											<ul>
 												<li><a href="#">일자별 졸음 알람(주간)</a></li>
 												<li><a href="#">시간별 졸음 알람(주간)</a></li>
@@ -207,8 +200,8 @@
 												<li><a href="#">시간별 졸음 알람(월간)</a></li>
 											</ul>
 										</li>
-										<li><a href="informagion.jsp">정보</a></li>
-										<li><a href="setting.jsp">설정</a></li>
+										<li><a href="information.do">정보</a></li>
+										<li><a href="setting.do">설정</a></li>
 									</ul>
 								</nav>
 

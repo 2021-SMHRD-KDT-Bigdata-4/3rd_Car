@@ -3,13 +3,13 @@
 <configuration>
 	
 	<typeAliases>
-	    <typeAlias type="kr.car.domain.MemberVO" alias="memberVO"/>
-	    <typeAlias type="kr.car.domain.AlarmVO" alias="alarmVO"/>
-	    <typeAlias type="kr.car.domain.AlarmtypeVO" alias="alarmtypeVO"/>
-	    <typeAlias type="kr.car.domain.DriveVO" alias="driveVO"/>
-	    <typeAlias type="kr.car.domain.HabitVO" alias="habitVO"/>
-	    <typeAlias type="kr.car.domain.RestVO" alias="restVO"/>
-	    <typeAlias type="kr.car.domain.RestareaVO" alias="restareaVO"/>
+	    <typeAlias type="kr.car.domain.MembersVO" alias="membersVO"/>
+	    <typeAlias type="kr.car.domain.AlarmsVO" alias="alarmsVO"/>
+	    <typeAlias type="kr.car.domain.AlarmtypesVO" alias="alarmtypesVO"/>
+	    <typeAlias type="kr.car.domain.DrivingVO" alias="drivingVO"/>
+	    <typeAlias type="kr.car.domain.HabitsVO" alias="habitsVO"/>
+	    <typeAlias type="kr.car.domain.RestsVO" alias="restsVO"/>
+	    <typeAlias type="kr.car.domain.RestareasVO" alias="restareasVO"/>
 	    
 		<!-- <typeAlias type="kr.smhrd.domain.BoardVO" alias="boardVO"/>
 		<typeAlias type="kr.smhrd.domain.SearchVO" alias="searchVO"/> -->
