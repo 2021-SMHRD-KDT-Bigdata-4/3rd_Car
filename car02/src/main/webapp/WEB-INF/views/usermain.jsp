@@ -17,27 +17,31 @@
 		<link rel="stylesheet" href="resources/assets/css/index.css" />
 		<script type="text/javascript">
 		
-		function godstart(){
-	    	$.ajax({
-	    		url : "${cpath}/boardListAjax.do",
-	    		type : "get",
-	    		dataType : "json",
-	    		success : dstart,
-	    		error : function(){ alert("error"); }    		
-	    	});  
+		function goDelAjax(index){
+	    	  var idx=$("#idx"+index).text();
+	    	  $.ajax({
+	    		  url : "${cpath}/boardDeleteAjax.do",
+	    		  type : "get",
+	    		  data : {"idx" : idx},
+	    		  success : goJson,
+	    		  error : function(){ alert("error");}
+	    	  });
 	      }
-
 		function dstart(){
+			var idx=$("#idx"+index).text();
 			$.ajax({
 				url : "${cpath}/dstart.do",
 				type : "post",
-				//dataType : "json",
-				success : "usermain.jsp",
-				error : function(){ alert("usermainpage error"); }
+				data : vo,
+				dataType : "json",
+				success : gousermain,
+				error : function(){ alert("dstart error"); }
 			});
 		}
 		//위에 db정보가 들어가면 화면에서 보여주게 하는 코드 밑에 적어야 한다.
-		
+		function gousermain(){
+    	location.href="${cpath}/usermain.do";  
+      }
 		
 		</script>
 	</head>
@@ -61,7 +65,7 @@
 							<!-- Banner -->
 								<br/>
 							    <div class="content">
-							    	<input  type="button" class="button big" style="font-size: 12px" value="운전시작" onclick="godstart()">&nbsp&nbsp&nbsp
+							    	<input  type="button" class="button big" style="font-size: 12px" value="운전시작" onclick="dstart(index)">&nbsp&nbsp&nbsp
 							    	<input  type="button" class="button big" style="font-size: 12px"  value="운전종료" onclick="godend()">&nbsp&nbsp&nbsp
 							    	
 							    	<input  type="button" class="button big" style="font-size: 12px" value="휴식시작" >&nbsp&nbsp&nbsp

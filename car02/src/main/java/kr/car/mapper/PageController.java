@@ -8,14 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.car.domain.DriveVO;
 import kr.car.domain.MemberVO;
-import kr.car.domain.RestVO;
 
 //POJO
 @Controller
@@ -100,14 +97,15 @@ public class PageController {
 		 * System.out.println("2"); }
 		 */
 	
-		
-	@PostMapping("/dstart.do")
+	
+	
+	@RequestMapping(value ="/dstart.do", method = RequestMethod.GET)
 	public String dstart(DriveVO vo) {
-		CMapper.dstart(vo);
+		CMapper.dend(vo);
 		return "redirect:/usermain.do";
 	}
 	
-	@PostMapping("/dend.do")
+	@RequestMapping(value ="/dend.do", method = RequestMethod.GET)
 	public String dend(DriveVO vo) {
 		CMapper.dend(vo);
 		return "redirect:/usermain.do";
