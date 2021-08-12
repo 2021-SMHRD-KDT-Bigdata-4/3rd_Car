@@ -9,6 +9,7 @@ DROP TABLE ALARMTYPES  cascade;
 DROP TABLE DRIVINGS  cascade;
 DROP TABLE RESTAREAS cascade;
 DROP TABLE MEMBERS  cascade;
+
 SHOW TABLES;
 
 -- =======================테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
@@ -71,6 +72,25 @@ CREATE TABLE ALARMTYPES
 ALTER TABLE ALARMTYPES COMMENT '알람타입정보';
 
 
+-- HABITS Table Create SQL
+CREATE TABLE HABITS
+(
+    `HABIT_ID`             INT             NOT NULL    AUTO_INCREMENT COMMENT '습관아이디', 
+    `DROWSINESS_ALARMTIME`  DATETIME        NULL        COMMENT '졸음알람시간', 
+    `TOTAL_DRIVINGTIME`     INT             NULL        COMMENT '총운전시간', 
+    `REST_COUNT`            INT             NULL        COMMENT '휴식횟수', 
+    `ALARM_COUNT`           INT             NULL        COMMENT '알람횟수', 
+    `MEMBER_ID`             VARCHAR(100)    NOT NULL    COMMENT '회원아이디',
+    
+     PRIMARY KEY (HABIT_ID)
+);
+
+ALTER TABLE HABITS COMMENT '나의운전습관정보';
+
+ALTER TABLE HABITS
+    ADD CONSTRAINT FK_HABITS_MEMBER_ID_MEMBERS_MEMBER_ID FOREIGN KEY (MEMBER_ID)
+        REFERENCES MEMBERS (MEMBER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 -- ALARMS Table Create SQL
 CREATE TABLE ALARMS
 (
@@ -111,28 +131,6 @@ CREATE TABLE RESTS
 );
 
 ALTER TABLE RESTS COMMENT '휴식정보';
-
-
-
- 
--- HABITS Table Create SQL
-CREATE TABLE HABITS
-(
-    `HABIT_ID`             INT             NOT NULL    AUTO_INCREMENT COMMENT '습관아이디', 
-    `DROWSINESS_ALARMTIME`  DATETIME        NULL        COMMENT '졸음알람시간', 
-    `TOTAL_DRIVINGTIME`     INT             NULL        COMMENT '총운전시간', 
-    `REST_COUNT`            INT             NULL        COMMENT '휴식횟수', 
-    `ALARM_COUNT`           INT             NULL        COMMENT '알람횟수', 
-    `MEMBER_ID`             VARCHAR(100)    NOT NULL    COMMENT '회원아이디',
-    
-     PRIMARY KEY (HABIT_ID)
-);
-
-ALTER TABLE HABITS COMMENT '나의운전습관정보';
-
-ALTER TABLE HABITS
-    ADD CONSTRAINT FK_HABITS_MEMBER_ID_MEMBERS_MEMBER_ID FOREIGN KEY (MEMBER_ID)
-        REFERENCES MEMBERS (MEMBER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
         
 ALTER TABLE RESTS
