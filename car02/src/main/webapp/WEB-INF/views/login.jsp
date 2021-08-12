@@ -12,17 +12,7 @@
 <script type="text/javascript">
 
 
-function logoutFn(){
-	$.ajax({
-		url:"ajaxlogout.do",
-		type:"get",
-		success:function(){
-			 location.href="ajax04.jsp";
-		},
-	    error:function(){ alert("error"); }
-		
-	});
-}
+
 </script>
 <!------ Include the above in your HEAD tag ---------->
 
@@ -64,14 +54,14 @@ function logoutFn(){
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="아이디" id=member_id>						
+						<input type="text" class="form-control" placeholder="아이디" id=member_id name="member_id">						
 					</div>
 					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="비밀번호" id=password>
+						<input type="password" class="form-control" placeholder="비밀번호" id=password name="password">
 					</div>
 					<br>
 					<div class="form-group">

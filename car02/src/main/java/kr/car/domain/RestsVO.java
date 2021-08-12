@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class RestsVO {
 	private int rests_id;
-	private Date rests_start;
-	private Date rests_end;
+	private Date rest_startime;
+	private Date rest_endtime;
 	private int habit_id;
 }

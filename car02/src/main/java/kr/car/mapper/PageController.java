@@ -74,6 +74,7 @@ public class PageController {
 	public String loginFunction(MembersVO vo, HttpServletRequest request) {
 
 		MembersVO result = CMapper.loginFunction(vo);
+		System.out.println(result);
 
 		if (result != null) {
 			HttpSession session = request.getSession();
@@ -82,7 +83,10 @@ public class PageController {
 			HttpSession session = request.getSession();
 			session.setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
 		}
-		return "redirect:/usermain.do";
+		
+		System.out.println("???");
+		
+		return "usermain";
 	}
 	
 	//로그아웃
