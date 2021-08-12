@@ -152,7 +152,9 @@ INSERT INTO MEMBERS VALUES('14','1234','정종원','여','스마트운수','31',
 INSERT INTO MEMBERS VALUES('15','1234','주익정','남','스마트운수','35','');
 INSERT INTO MEMBERS VALUES('16','1234','정지윤','여','스마트운수','32','');
 INSERT INTO MEMBERS VALUES('17','1234','최성우','남','스마트운수','33','');
+INSERT INTO MEMBERS VALUES('1234','1234','최성우','남','스마트운수','33','');
 INSERT INTO MEMBERS VALUES('admin','admin','김은혜','A','스마트운수','27','');
+commit;
 
 
 --drive 실험
@@ -177,7 +179,10 @@ select*from RESTS;
 
 select * from drivings; 
 insert into drivings(driving_starttime,member_id) values(now(),'11');
- select * from drivings where member_id= '11'
+ select * from drivings where member_id= '1234'
+ 
+select * from drivings;
+
 
 select driving_starttime, driving_endtime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d')
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d %h:%m:%s');

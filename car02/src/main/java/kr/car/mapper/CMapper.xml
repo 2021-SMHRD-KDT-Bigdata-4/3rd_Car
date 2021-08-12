@@ -8,8 +8,8 @@
 	 select * from members where member_id= #{member_id} and password = #{password}
 	</select>
 	
-   <select id="drivingList" resultType="drivingVO">
-       select * from drivings where member_id= #{member_id}
+   <select id="drivingList" resultType="DrivingVO">
+       select * from drivings where member_id = "11"
     </select>
     
     <select id="restsList" resultType="restsVO">
@@ -20,8 +20,19 @@
       insert into drivings(driving_starttime,member_id) values(now(),#{member_id});
     </insert>
     
-    <update id="dend" parameterType="membersVO">
-	 update drivings set driving_endtime = now() where driving_endtime is null;
+    <update id="dend" parameterType="DrivingVO">
+	 UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and member_id=#{member_id};
 	</update>
+	
+	  <insert id="rest_start" parameterType="RestsVO">
+      insert into RESTS(REST_STARTTIME,  MEMBER_ID) values(now(),#{member_id});
+    </insert>
+    
+    <update id="rest_end" parameterType="RestsVO">
+	 UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and MEMBER_ID=#{member_id};
+	</update>
+	
+    
+
     
 </mapper>

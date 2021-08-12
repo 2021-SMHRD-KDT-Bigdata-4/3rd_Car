@@ -18,14 +18,15 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="resources/assets/css/index.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">	
-	<%
-	MembersVO vo = (MembersVO)session.getAttribute("MembersVO");
-	String id = vo.getMember_id();
-	%>
+	<%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
+String id = vo.getMember_id();%>
 	function driveS() {
 		  var member_id = '<%=id%>';
 		  $.ajax({
@@ -40,8 +41,52 @@
 	            }
 	          });
 	    } 
-
+	function driveEnd() {
+		  var member_id = '<%=id%>';
+		  $.ajax({
+	            type : "get",
+	            url: "${cpath}/dend.do",
+	             data : {"member_id" : member_id},
+	            success : function(data) {
+					alert("운전종료!");
+				},
+				 error:function(request,status,error){
+		             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		          }
+		         });
+	    } 
 	
+	function restStart() {
+		  var member_id = '<%=id%>';
+		  $.ajax({
+	            type : "get",
+	            url: "${cpath}/rstart.do",
+	             data : {"member_id" : member_id},
+	            success : function(data) {
+					alert("휴식이 중요하죠~!");
+				},
+	            error:function(){
+	            	alert("휴식시작실패");
+	            }
+	          });
+	    } 
+	function restEnd() {
+		  var member_id = '<%=id%>';
+		$.ajax({
+			type : "get",
+			url : "${cpath}/rend.do",
+			data : {
+				"member_id" : member_id
+			},
+			success : function(data) {
+				alert("휴식끝~!");
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
+		});
+	}
 </script>
 </head>
 <body class="is-preload">
@@ -68,22 +113,22 @@
 				<div class="content">
 					<button class="button big" style="font-size: 12px;" id="driveStart"
 						name="driveStart" onclick="driveS()">운전시작</button>
-					<input type="button" class="button big" style="font-size: 12px"
-						value="운전종료" id="dstop" onclick="godend()">&nbsp&nbsp&nbsp
+					<button class="button big" style="font-size: 12px;" id="driveStop"
+						name="driveStop" onclick="driveEnd()">운전종료</button>
 
-					<input type="button" class="button big" style="font-size: 12px"
-						value="휴식시작">&nbsp&nbsp&nbsp <input type="button"
-						class="button big" style="font-size: 12px" value="휴식종료">&nbsp&nbsp&nbsp
+					<button class="button big" style="font-size: 12px;" id="RestStart"
+						name="RestStart" onclick="restStart()">휴식시작</button>
+					<button class="button big" style="font-size: 12px;" id="RestStop"
+						name="RestStop" onclick="restEnd()">휴식종료</button>
 
-					<!-- <a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 시작</a>&nbsp&nbsp&nbsp
-							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 종료</a> -->
+					
 				</div>
 
 
 				<!-- Section -->
 				<section>
 					<header class="major">
-						<h2>졸음 운전 알람</h2>
+						<h2>운전 현황</h2>
 					</header>
 
 					<!-- Advanced Tables -->
@@ -105,7 +150,7 @@
 									</thead>
 
 									<tbody>
-										<c:forEach var="vo" items="${list}">
+										<c:forEach var="vo" items="${list1}">
 											<tr>
 												<td>${vo.driving_id}</td>
 												<td>${vo.driving_starttime}</td>
@@ -133,7 +178,7 @@
 				<!-- 두 번째 표 구역 -->
 				<section>
 					<header class="major">
-						<h2>휴식 시간 알람</h2>
+						<h2>휴식 현황</h2>
 					</header>
 
 					<!-- Advanced Tables -->
@@ -154,7 +199,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="vo" items="${restsList}">
+										<c:forEach var="vo" items="${list2}">
 											<tr>
 												<td>${vo.rest_id}</td>
 												<td>${vo.rest_starttime}</a></td>
@@ -221,7 +266,7 @@
 					<header class="major">
 						<h2>Get in touch</h2>
 					</header>
-					<p>Sed </p>
+					<p>Sed</p>
 					<ul class="contact">
 						<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
 						<li class="icon solid fa-phone">(000) 000-0000</li>

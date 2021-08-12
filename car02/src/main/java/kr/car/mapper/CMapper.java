@@ -22,11 +22,14 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 	
 	//운전시작.종료
 	public int dstart(DrivingVO vo);
-	public DrivingVO dend(DrivingVO vo);
+	public int dend(DrivingVO vo);
+
+	public int rest_start(RestsVO vo);
+	public int rest_end(RestsVO vo);
 
 	
 	//유저메인 화면 불러오기
-	public List<DrivingVO> drivingList();
-    public List<RestsVO> restsList();
+	public List<DrivingVO> drivingList(String member_id);
+    public List<RestsVO> restsList(String member_id);
 
 }
