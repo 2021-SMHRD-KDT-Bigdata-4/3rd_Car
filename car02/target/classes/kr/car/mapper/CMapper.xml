@@ -9,15 +9,15 @@
 	</select>
 	
    <select id="drivingList" resultType="drivingVO">
-        select * from drivings 
+       select * from drivings where member_id= #{member_id}
     </select>
     
     <select id="restsList" resultType="restsVO">
         select * from rests
     </select>
     
-    <insert id="dstart" parameterType="membersVO">
-      insert into drivings(driving_starttime,member_id) values(now(),#{member_id}) where memberid=#{memberid};     
+    <insert id="dstart" parameterType="DrivingVO">
+      insert into drivings(driving_starttime,member_id) values(now(),#{member_id});
     </insert>
     
     <update id="dend" parameterType="membersVO">

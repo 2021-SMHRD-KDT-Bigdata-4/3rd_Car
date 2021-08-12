@@ -21,7 +21,7 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 	public MembersVO loginFunction(MembersVO vo);
 	
 	//운전시작.종료
-	public DrivingVO dstart(DrivingVO vo);
+	public int dstart(DrivingVO vo);
 	public DrivingVO dend(DrivingVO vo);
 
 	

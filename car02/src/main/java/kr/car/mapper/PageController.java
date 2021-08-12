@@ -71,9 +71,10 @@ public class PageController {
 	
 	@RequestMapping(value ="/dstart.do")
 	@ResponseBody
-	public String dstart(DrivingVO vo) throws Exception{
-		System.out.println(vo.getDriving_id());
-		return "driveid="+ vo.getDriving_id() +"," +"drivestart="+vo.getDriving_starttime();
+	public int dstart(DrivingVO vo) throws Exception{
+		System.out.println(vo.getMember_id());
+		int cnt = CMapper.dstart(vo);
+		return 1;
 	}
 	
 	@RequestMapping(value ="/dend.do", method = RequestMethod.GET)
@@ -118,7 +119,7 @@ public class PageController {
 	public void login() {
 
 	}
-	@RequestMapping("/useralarm1.do")
+	@RequestMapping("/useralarm.do")
 	public void useralarm1() {
 	}
 	

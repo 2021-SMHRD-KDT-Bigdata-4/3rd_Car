@@ -175,7 +175,9 @@ UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and MEMBER_ID='
 
 select*from RESTS;
 
-select * from drivings where member_id='11';
+select * from drivings; 
+insert into drivings(driving_starttime,member_id) values(now(),'11');
+ select * from drivings where member_id= '11'
 
 select driving_starttime, driving_endtime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d')
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d %h:%m:%s');

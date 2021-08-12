@@ -1,3 +1,5 @@
+<%@page import="kr.car.domain.MembersVO"%>
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,47 +18,30 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="resources/assets/css/index.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">	
+	<%
+	MembersVO vo = (MembersVO)session.getAttribute("MembersVO");
+	String id = vo.getMember_id();
+	%>
+	function driveS() {
+		  var member_id = '<%=id%>';
+		  $.ajax({
+	            type : "get",
+	            url: "${cpath}/dstart.do",
+	             data : {"member_id" : member_id},
+	            success : function(data) {
+					alert("운전시작!");
+				},
+	            error:function(request,status,error){
+	            	alert("실패");
+	            }
+	          });
+	    } 
 
-
-	/*  function dstart() {
-		 $.ajax({
-				url : '${cpath}/dstart.do',
-				type : 'post',
-				data : {'member_id' : vo.member_id},
-				alert(data);
-				dataType : 'json',
-				success : gousermain,
-				error : function(){ alert('dstart error'); },
 	
-			});
-	}  */
-	
-	 
-	 $(function(){
-		$("button").on("click",getData);
-		 
-	 });
-	 function getData(){
-		
-		 alret("drive start");
-		 $.ajax({
-			 alret("drive startInAjax");
-			type : "post",
-			url: "${cpath}/dstart.do",
-			// data : {"member_id" : member_id},
-			success : gousermain,
-			error: function(){alert('dstart error');
-			}
-		 });
-	 }
-	 
-
-	//위에 db정보가 들어가면 화면에서 보여주게 하는 코드 밑에 적어야 한다.
-	function gousermain() {
-		location.href = "${cpath}/usermain.do";
-	}
 </script>
 </head>
 <body class="is-preload">
@@ -70,8 +55,8 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a class="logo"><strong>당신의 안전을 책임지는 co-car</strong>
-					<c:if test="${MembersVO!=null}">${MembersVO.member_name}님 방문을 환영합니다.</c:if></a>
+					<a class="logo"><strong>당신의 안전을 책임지는 co-car</strong> <c:if
+							test="${MembersVO!=null}">${MembersVO.member_name}님 방문을 환영합니다.</c:if></a>
 					<ul class="icons">
 						<li><a href="${cpath}/logoutAjax.do"> Logout</a></li>
 					</ul>
@@ -79,9 +64,10 @@
 
 				<!-- Banner -->
 				<br />
-				
+
 				<div class="content">
-					<button class="button big" style=" font-size: 12px;" id="dstart" >운전시작</button>
+					<button class="button big" style="font-size: 12px;" id="driveStart"
+						name="driveStart" onclick="driveS()">운전시작</button>
 					<input type="button" class="button big" style="font-size: 12px"
 						value="운전종료" id="dstop" onclick="godend()">&nbsp&nbsp&nbsp
 
@@ -92,7 +78,7 @@
 					<!-- <a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 시작</a>&nbsp&nbsp&nbsp
 							    	<a href="mypage.jsp" class="button big" style="font-size: 12px">휴식 종료</a> -->
 				</div>
-				
+
 
 				<!-- Section -->
 				<section>
@@ -124,7 +110,7 @@
 												<td>${vo.driving_id}</td>
 												<td>${vo.driving_starttime}</td>
 												<td>${vo.driving_endtime}</td>
-												<td>비고</td>
+												<td>${vo.member_id}</td>
 												<td>비고</td>
 											</tr>
 										</c:forEach>
@@ -217,7 +203,7 @@
 					</header>
 					<ul>
 						<li><a href="usermain.do">메인</a></li>
-						<li><span class="useralarm.do">알람</span>
+						<li><a href="useralarm.do">알람</a>
 							<ul>
 								<li><a href="#">일자별 졸음 알람(주간)</a></li>
 								<li><a href="#">시간별 졸음 알람(주간)</a></li>
@@ -235,10 +221,7 @@
 					<header class="major">
 						<h2>Get in touch</h2>
 					</header>
-					<p>Sed varius enim lorem ullamcorper dolore aliquam aenean
-						ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin
-						sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat
-						tempus aliquam.</p>
+					<p>Sed </p>
 					<ul class="contact">
 						<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
 						<li class="icon solid fa-phone">(000) 000-0000</li>
