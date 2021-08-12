@@ -8,8 +8,8 @@
 	 select * from members where member_id= #{member_id} and password = #{password}
 	</select>
 	
-    <select id="drivingList" resultType="drivingVO">
-        select * from drivings
+   <select id="drivingList" resultType="drivingVO">
+        select * from drivings 
     </select>
     
     <select id="restsList" resultType="restsVO">

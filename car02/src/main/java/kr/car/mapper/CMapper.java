@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import kr.car.domain.DrivingVO;
 import kr.car.domain.MembersVO;
+import kr.car.domain.RestsVO;
 
 
 
@@ -19,14 +20,13 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 	//로그인 매핑
 	public MembersVO loginFunction(MembersVO vo);
 	
-
+	//운전시작.종료
 	public DrivingVO dstart(DrivingVO vo);
 	public DrivingVO dend(DrivingVO vo);
 
 	
+	//유저메인 화면 불러오기
 	public List<DrivingVO> drivingList();
-
-
-	public List<DrivingVO> restsList();
+    public List<RestsVO> restsList();
 
 }

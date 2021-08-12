@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.car.domain.DrivingVO;
 import kr.car.domain.MembersVO;
+import kr.car.domain.RestsVO;
 
 //POJO
 @Controller
@@ -23,6 +24,66 @@ public class PageController {
 	private CMapper CMapper;
 	
 
+
+
+	
+	@RequestMapping("/usermain.do")
+	   public void usermain(Model model) {
+	      System.out.println("출력확인");
+		
+				//운전확인
+	         List<DrivingVO> list=CMapper.drivingList();       
+	         model.addAttribute("list", list);  
+	         
+	           //휴식확인
+	         List<RestsVO> restsList=CMapper.restsList();       
+	         model.addAttribute("restsList", restsList);
+	         System.out.println("휴식 출력확인");
+	 		
+	   }
+
+	@RequestMapping(value = "/loginAjax.do", method = RequestMethod.POST)
+	public String loginFunction(MembersVO vo, HttpServletRequest request) {
+
+		MembersVO result = CMapper.loginFunction(vo);
+		System.out.println(result);
+
+		if (result == null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("MembersVO", result);
+		}
+		
+		//System.out.println("로그인확인");
+		
+		return "redirect:/usermain.do";
+	}
+	
+	//로그아웃
+	@RequestMapping(value ="/logoutAjax.do", method = RequestMethod.GET)
+		public String logout(HttpSession session) {
+			 session.invalidate();
+			 return "login";
+			 
+		}
+	
+	@RequestMapping(value ="/dstart.do")
+	@ResponseBody
+	public String dstart(DrivingVO vo) throws Exception{
+		System.out.println(vo.getDriving_id());
+		return "driveid="+ vo.getDriving_id() +"," +"drivestart="+vo.getDriving_starttime();
+	}
+	
+	@RequestMapping(value ="/dend.do", method = RequestMethod.GET)
+	public String dend(DrivingVO vo) {
+		CMapper.dend(vo);
+		return "redirect:/usermain.do";
+	}
+	
+	
+	
 	@RequestMapping("/main.do")
 	public void main() {
 
@@ -61,66 +122,6 @@ public class PageController {
 	public void useralarm1() {
 	}
 	
-	@RequestMapping("/usermain.do")
-	public void usermain(Model model) {
-		//System.out.println("1");
-		   List<DrivingVO> list=CMapper.drivingList(); 		
-		   model.addAttribute("list", list); // 객체바인딩->ModelAndView->Model(*)
-		   //return "boardList"; //  -->ViewResolver--->/WEB-INF/views/boardList.jsp
-		   System.out.println("2");		   
-	}
-
-	@RequestMapping(value = "/loginAjax.do", method = RequestMethod.POST)
-	public String loginFunction(MembersVO vo, HttpServletRequest request) {
-
-		MembersVO result = CMapper.loginFunction(vo);
-		System.out.println(result);
-
-		if (result != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("MembersVO", result);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
-		}
-		
-		System.out.println("???");
-		
-		return "usermain";
-	}
-	
-	//로그아웃
-	@RequestMapping(value ="/logoutAjax.do", method = RequestMethod.GET)
-		public String logout(HttpSession session) {
-			 session.invalidate();
-			 return "login";
-			 
-		}
-		/*
-		 * @GetMapping("/driveList.do") public void driveList(Model model) {
-		 * System.out.println("1"); List<DriveVO> list=CMapper.driveList();
-		 * model.addAttribute("list", list); // 객체바인딩->ModelAndView->Model(*) //return
-		 * "boardList"; // -->ViewResolver--->/WEB-INF/views/boardList.jsp
-		 * System.out.println("2"); }
-		 */
-	
-		/*
-		 * @PostMapping("/dstart.do") public String dstart(DriveVO vo) { // 파라메터수집(자동)->
-		 * new BoardVO(); CMapper.dstart(vo); return "redirect:/usermain.do"; }
-		 */
-	
-	@RequestMapping(value ="/dstart.do")
-	@ResponseBody
-	public String dstart(DrivingVO vo) throws Exception{
-		System.out.println(vo.getDriving_id());
-		return "driveid="+ vo.getDriving_id() +"," +"drivestart="+vo.getDriving_starttime();
-	}
-	
-	@RequestMapping(value ="/dend.do", method = RequestMethod.GET)
-	public String dend(DrivingVO vo) {
-		CMapper.dend(vo);
-		return "redirect:/usermain.do";
-	}
 	
 	
 	

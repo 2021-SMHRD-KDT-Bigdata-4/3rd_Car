@@ -39,10 +39,13 @@
 		 
 	 });
 	 function getData(){
+		
+		 alret("drive start");
 		 $.ajax({
+			 alret("drive startInAjax");
 			type : "post",
 			url: "${cpath}/dstart.do",
-			/* data : {"member_id" : member_id}, */
+			// data : {"member_id" : member_id},
 			success : gousermain,
 			error: function(){alert('dstart error');
 			}
@@ -165,7 +168,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="vo" items="${list}">
+										<c:forEach var="vo" items="${restsList}">
 											<tr>
 												<td>${vo.rest_id}</td>
 												<td>${vo.rest_starttime}</a></td>
