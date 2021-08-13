@@ -183,6 +183,9 @@ insert into drivings(driving_starttime,member_id) values(now(),'11');
  
 select * from drivings;
 
+--driving list  member_id값 조건
+select *from drivings right outer join members on drivings.member_id=members.member_id where members.member_id='1234'
+
 
 select driving_starttime, driving_endtime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d')
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d %h:%m:%s');

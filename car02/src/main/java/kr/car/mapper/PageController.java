@@ -44,6 +44,7 @@ public class PageController {
 	@RequestMapping("/usermain.do")
 	  public String usermain (String member_id, Model model) {
 		List<DrivingVO> list1 = CMapper.drivingList(member_id);
+	System.out.println(list1);
 		List<RestsVO> list2 = CMapper.restsList(member_id);
 		model.addAttribute("list1", list1);
 		model.addAttribute("list2", list2);

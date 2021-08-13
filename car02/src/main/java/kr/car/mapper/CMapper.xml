@@ -9,7 +9,7 @@
 	</select>
 	
    <select id="drivingList" resultType="DrivingVO">
-       select * from drivings where member_id = "11"
+    select *from drivings right outer join members on drivings.member_id=members.member_id where members.member_id=#{member_id}
     </select>
     
     <select id="restsList" resultType="restsVO">
