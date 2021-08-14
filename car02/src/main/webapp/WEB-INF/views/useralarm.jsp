@@ -27,7 +27,12 @@
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(alarm_count);
 
+      function timesend(){
+    	  
+      }
+      
       function alarm_count(dataaa) {
+    	 
         var data = new google.visualization.arrayToDataTable([
           ['확인필요', 'Percentage'],
           ["졸음경고 1회", 54],
