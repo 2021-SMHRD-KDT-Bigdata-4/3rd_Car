@@ -542,9 +542,7 @@
                               <li class="icon solid fa-home">스마트인재 개발원<br />
                               광주광역시 남구 송암로60 광주CGI센터 2층 <br />FAX. 062-655-3510</li>
                            </ul>
-                           
                         </section>
-
                      <!-- Footer -->
                         <footer id="footer">
                            <p class="copyright">&copy; 제작자 : 빈솬조 <a href="https://unsplash.com">/이미지 참조</a> <a href="https://html5up.net">/디자인 참조</a>.</p>
