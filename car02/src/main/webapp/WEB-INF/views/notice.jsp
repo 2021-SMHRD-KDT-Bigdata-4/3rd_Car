@@ -116,8 +116,8 @@
                               <li><a href="index.jsp">메인</a></li>
                               <li><a href="user_mn.jsp">회원관리</a></li>
                               <li><a href="sleep_mn.jsp">졸음운전 관리</a></li>
-                              <li><a href="rest_mn.jsp">휴식시간 관리</a></li>
-                              <li><a href="notice.jsp">공지사항</a></li>
+                              <li><a href="mypage.jsp">휴식시간 관리</a></li>
+                              <li><a href="mypage.jsp">공지사항</a></li>
                                     
                               
                            </ul>

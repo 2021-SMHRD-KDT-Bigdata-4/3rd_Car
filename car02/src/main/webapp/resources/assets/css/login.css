@@ -5,39 +5,67 @@
 
 html,body{
 /* background-image: url('https://blog.hmgjournal.com/images_n/contents/170418_drive01.jpg'); */
+/* background-image: url('../../images/login3.png'); */
+/* background-color: #1a426f; */
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
-font-family: 'Numans', sans-serif;
+font-family: san-serif;
 }
+
 
 .container{
 height: 100%;
 align-content: center;
+text-align: center;
+
 }
 
 .card{
-height: 370px;
+height: 300px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color: rgba(255,255,255,0.5) !important;
+background-color: white;
+border-color: #12cbc4;
+outline:0;
 }
 
 .social_icon span{
-font-size: 60px;
+font-size: 30px;
 margin-left: 10px;
-color: #FFC312;
+color: #0000a0;
+background-color: #0000ff;
 }
 
 .social_icon span:hover{
-color: white;
+color: #12cbc4;
 cursor: pointer;
 }
 
-.card-header h3{
-color: white;
+.card-header {
+background-color: white;
+border:0;
 }
+
+.card-header h2{
+color: #12cbc4;
+height: 28px;
+font-weight: bold;
+}
+
+.card-body {
+color: black;
+height: 30px;
+font-weight: bold;
+}
+
+
+.card-footer {
+background-color: white;
+border-color: #12cbc4;
+}
+
 
 .social_icon{
 position: absolute;
@@ -46,20 +74,20 @@ top: -45px;
 }
 
 .input-group-prepend span{
-width: 50px;
-background-color: #00cec9;
+width: 40px;
+background-color: #12cbc4;
 color: black;
 border:0 !important;
 }
 
 input:focus{
 outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
+box-shadow: 0 0 1 0 !important;
 
 }
 
 .remember{
-color: white;
+color: #000040;
 }
 
 .remember input
@@ -71,18 +99,18 @@ margin-right: 5px;
 }
 
 .login_btn{
-color: white;
-background-color: #00cec9;
+color: #12cbc4;
+background-color: white;
 width: 100px;
 }
 
 .login_btn:hover{
-color: black;
-background-color: white;
+color: white;
+background-color: #12cbc4;
 }
 
 .links{
-color: white;
+color: #0fb9b1;
 }
 
 .links a{

@@ -94,19 +94,19 @@ ALTER TABLE HABITS
 -- ALARMS Table Create SQL
 CREATE TABLE ALARMS
 (
-    `ARARM_ID`        INT             NOT NULL    AUTO_INCREMENT COMMENT '알람순번', 
-    `ARARM_TIME`      DATETIME        NULL        COMMENT '졸음알람시간', 
-    `ARARM_LOCATION`  VARCHAR(100)    NULL        COMMENT '알람위치', 
+    `ALARM_ID`        INT             NOT NULL    AUTO_INCREMENT COMMENT '알람순번', 
+    `ALARM_TIME`      DATETIME        NULL        COMMENT '졸음알람시간', 
+    `ALARM_LOCATION`  VARCHAR(100)    NULL        COMMENT '알람위치', 
     `MEMBER_ID`       VARCHAR(100)    NOT NULL    COMMENT '회원아이디', 
-    `ARARMTYPE_ID`    INT             NOT NULL    COMMENT '알람타입아이디', 
+    `ALARMTYPE_ID`    INT             NOT NULL    COMMENT '알람타입아이디', 
     `HABIT_ID`        INT             NULL        COMMENT '습관아이디', 
-     PRIMARY KEY (ARARM_ID)
+     PRIMARY KEY (ALARM_ID)
 );
 
 ALTER TABLE ALARMS COMMENT '알람정보';
 
 ALTER TABLE ALARMS
-    ADD CONSTRAINT FK_ALARMS_ARARMTYPE_ID_ALARMTYPES_ALARMTYPE_ID FOREIGN KEY (ARARMTYPE_ID)
+    ADD CONSTRAINT FK_ALARMS_ALARMTYPE_ID_ALARMTYPES_ALARMTYPE_ID FOREIGN KEY (ALARMTYPE_ID)
         REFERENCES ALARMTYPES (ALARMTYPE_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE ALARMS
@@ -156,6 +156,39 @@ INSERT INTO MEMBERS VALUES('1234','1234','최성우','남','스마트운수','33
 INSERT INTO MEMBERS VALUES('admin','admin','김은혜','A','스마트운수','27','');
 commit;
 
+
+--drive 실험
+insert into DRIVINGS (DRIVING_STARTTIME, MEMBER_ID) values(now(),'11');
+UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and MEMBER_ID='11';
+
+
+insert into DRIVINGS (DRIVING_STARTTIME, MEMBER_ID) values(now(),'u1');
+UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and MEMBER_ID='u1';
+
+select*from DRIVINGS;   
+
+
+--rest 실험
+insert into RESTS(REST_STARTTIME,  MEMBER_ID) values(now(), '11');
+UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and MEMBER_ID='11';
+
+insert into RESTS(REST_STARTTIME,  MEMBER_ID) values(now(), 'u1');
+UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and MEMBER_ID='u1';
+
+select*from RESTS;
+
+select * from drivings; 
+insert into drivings(driving_starttime,member_id) values(now(),'11');
+ select * from drivings where member_id= '1234'
+ 
+select * from drivings;
+
+
+select driving_starttime, driving_endtime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d')
+select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d %h:%m:%s');
+select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d');
+select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%H:%i:%s');
+        
 
 --drive 실험
 insert into DRIVINGS (DRIVING_STARTTIME, MEMBER_ID) values(now(),'11');
