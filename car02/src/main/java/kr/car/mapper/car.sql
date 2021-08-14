@@ -49,6 +49,7 @@ CREATE TABLE DRIVINGS
     `DRIVING_ID`         INT             NOT NULL    AUTO_INCREMENT COMMENT '운전아이디', 
     `DRIVING_STARTTIME`  DATETIME        NULL        COMMENT '운전출발시간', 
     `DRIVING_ENDTIME`    DATETIME        NULL        COMMENT '운전종료시간', 
+    `DRIVING_TOTALTIME`    int        NULL        COMMENT '운전시간', 
     `MEMBER_ID`          VARCHAR(100)    NOT NULL    COMMENT '회원아이디', 
     `HABIT_ID`           INT             NULL        COMMENT '습관아이디', 
      PRIMARY KEY (DRIVING_ID)
@@ -165,7 +166,7 @@ UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and ME
 insert into DRIVINGS (DRIVING_STARTTIME, MEMBER_ID) values(now(),'u1');
 UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and MEMBER_ID='u1';
 
-select*from DRIVINGS;   
+select*from MEMBERS;   
 
 
 --rest 실험
@@ -216,11 +217,67 @@ insert into drivings(driving_starttime,member_id) values(now(),'11');
  
 select * from drivings;
 
+
 --driving list  member_id값 조건
 select *from drivings right outer join members on drivings.member_id=members.member_id where members.member_id='1234'
+select driving_starttime, driving_endtime,sum()from drivings, members where drivings.member_id=members.member_id and members.member_id='1234'
 
+-- 사용자 알림타입별 알람량
+select
+      count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID='11' then 1 end) as '졸음1회알람',
+      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID='11' then 1 end) as '졸음2회알람',
+      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID='11' then 1 end) as '졸음3회알람',
+      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID='11' then 1 end) as '휴게알람'
+      from Alarms;
+      
+-- 사용자 알림시간별 알람량
+select
+      count(case when ALARMTYPE_ID='1' then 1 end and case when DATE_FORMAT(ALARM_TIME, '%H') = '14' then 1 end )as '14시'
+     
+      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID='11' then 1 end) as '졸음2회알람',
+      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID='11' then 1 end) as '졸음3회알람',
+      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID='11' then 1 end) as '휴게알람'
+      from Alarms;
+
+      
+      
+-- 관리자용 알림타입별 알람량
+select
+      count(case when ALARMTYPE_ID='1' then 1 end ) as '졸음1회알람',
+      count(case when ALARMTYPE_ID='2' then 2 end ) as '졸음2회알람',
+      count(case when ALARMTYPE_ID='3' then 3 end ) as '졸음3회알람',
+      count(case when ALARMTYPE_ID='4' then 4 end ) as '휴게알람'
+      from Alarms;
+
+      
+      
 
 select driving_starttime, driving_endtime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d')
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d %h:%m:%s');
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d');
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%H:%i:%s');
+
+SELECT drivings, TIMESTAMPDIFF(HOUR, DRIVING_STARTTIME, driving_starttime()); 
+
+
+
+DROP TABLE D cascade;
+
+
+CREATE TABLE D
+(
+    `DRIVING_ID`         INT             NOT NULL    AUTO_INCREMENT COMMENT '운전아이디', 
+    `DRIVING_STARTTIME`  DATETIME        NULL        COMMENT '운전출발시간', 
+    `DRIVING_ENDTIME`    DATETIME        NULL        COMMENT '운전종료시간', 
+    `DRIVING_TOTALTIME`    int        NULL        COMMENT '운전시간', 
+    `MEMBER_ID`          VARCHAR(100)    NOT NULL    COMMENT '회원아이디', 
+    `HABIT_ID`           INT             NULL        COMMENT '습관아이디', 
+     PRIMARY KEY (DRIVING_ID)
+);
+
+
+select*from D
+
+--사용자 운전시간 (컬럼 추가하기)
+insert into D (DRIVING_STARTTIME, MEMBER_ID) values(now(),'u1');
+UPDATE D SET DRIVING_ENDTIME = now() , DRIVING_TOTALTIME=TIMESTAMPDIFF(second, D.DRIVING_STARTTIME, D.DRIVING_ENDTIME) WHERE DRIVING_ENDTIME is null and MEMBER_ID='u1';

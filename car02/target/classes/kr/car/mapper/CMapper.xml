@@ -9,7 +9,9 @@
 	</select>
 	
    <select id="drivingList" resultType="DrivingVO">
-    select *from drivings right outer join members on drivings.member_id=members.member_id where members.member_id=#{member_id}
+    select driving_starttime, driving_endtime from drivings, members where drivings.member_id=members.member_id and members.member_id='1234'
+    
+    
     </select>
     
     <select id="restsList" resultType="restsVO">
@@ -31,6 +33,15 @@
     <update id="rest_end" parameterType="RestsVO">
 	 UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and MEMBER_ID=#{member_id};
 	</update>
+	
+    <select id="alarm_count"  parameterType="AlarmsVO" resultType="kr.car.domain.AlarmCountVO">
+      select
+      count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID=#{member_id} then 1 end) as 'sleep_1times',
+      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID=#{member_id} then 2 end) as 'sleep_2times',
+      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID=#{member_id} then 3 end) as 'sleep_3times',
+      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID=#{member_id} then 4 end) as 'rest_alarm'
+      from Alarms        
+    </select>
 	
     
 

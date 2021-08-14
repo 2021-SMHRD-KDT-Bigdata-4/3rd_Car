@@ -3,14 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="cpath" value="${pageContext.request.contextPath}" />
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 
-<!--
-   Editorial by HTML5 UP
-   html5up.net | @ajlkn
-   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
 <title>Car</title>
@@ -44,11 +39,12 @@
    
    /* 끄고 싶다면 3초간 웃어라!!*/
    /* audio4는 그냥 재생됨. 휴식알람4*/   
-   
-   <%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
-String id = vo.getMember_id();%>
+<% MembersVO vo = (MembersVO)session.getAttribute("MembersVO");
+String id = vo.getMember_id();
+	System.out.print("접속한 ID : " + id); %>
+
    function driveS() {
-        var member_id = '<%=id%>';
+        var member_id ='<%=id%>';
         $.ajax({
                type : "get",
                url: "${cpath}/dstart.do",

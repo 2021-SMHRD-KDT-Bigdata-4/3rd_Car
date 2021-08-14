@@ -22,8 +22,38 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(alarm_count);
 
+      function alarm_count(dataaa) {
+        var data = new google.visualization.arrayToDataTable([
+          ['확인필요', 'Percentage'],
+          ["졸음경고 1회", 54],
+          ["졸음경고 2회", 24],
+          ["졸음경고 3회", 11],
+          ["휴식알람", 12]
+        ]);
+
+        var options = {
+          width: 800,
+          legend: { position: 'none' },
+          chart: {
+            title: '알림별 울림횟수',
+            subtitle: '졸지맙시다~~!' },
+          axes: {
+            x: {
+              0: { side: 'top', label: '알림'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "80%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      };
 
 
 
@@ -53,8 +83,8 @@
 
             <br />
             <div class="content">
-               <a href="mypage.jsp" class="button big">일자별 졸음 알람(주간)</a>&nbsp&nbsp&nbsp
-               <a href="mypage.jsp" class="button big">시간별 졸음 알람(주간)</a>
+               <a href="#" class="button big">알림별 통계</a>&nbsp&nbsp&nbsp
+               <a href="mypage.jsp" class="button big">시간대별 알람 통계</a>
             </div>
 
             <br />
@@ -112,9 +142,14 @@
 
 
             <br /> <br /> <br /> <br />
-            <p>여기에 차트나 그래프!</p>
+            	<p>제목</p>
+            	<form action="choosedate.do">
+            	<input type="date" name="startdate"> ~ <input type="date" name="enddate">
+            	<button onclick="alarm_count()">조회하기</button>
+            	</form>
+             <div id="top_x_div" style="width: 800px; height: 600px;"></div>
             <br /> <br /> <br /> <br />
-
+			
             <p>총 알람 횟수 : sum</p>
             <p>평균알람 횟수 : sum/7</p>
 
