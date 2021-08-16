@@ -51,7 +51,7 @@
        
    
    
-   <%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
+<%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
 String id = vo.getMember_id();%>
 
    
