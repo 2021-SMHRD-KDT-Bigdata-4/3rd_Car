@@ -49,7 +49,7 @@
            
     </select>
 	
-        <select id = "boardList" resultType="kr.car.domain.BoardVO">
+        <select id = "boardList" resultType="BoardVO">
          select idx,title,contents,writer,Date_FORMAT(indate,'%Y-%m-%d') AS indate from BOARD;
     </select>    
     

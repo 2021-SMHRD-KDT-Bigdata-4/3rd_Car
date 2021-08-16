@@ -78,13 +78,14 @@ function logoutFn(){
          
          </div>
          <div class="card-footer">
+            
+            <div class="d-flex justify-content-center links">
+               새 계정을 생성하시겠습니까?<a href="${cpath}/register.do">회원가입</a>
             </div>
-            <div class="d-flex justify-content-center">
-               <a href="#"></a>
-            </div>
+        
+ 
          </div>
       </div>
    </div>
-</div>
 </body>
 </html>

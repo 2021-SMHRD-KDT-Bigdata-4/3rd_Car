@@ -12,6 +12,27 @@ DROP TABLE MEMBERS  cascade;
 
 SHOW TABLES;
 
+SELECT * FROM BOARD;
+DROP TABLE BOARD  cascade;
+
+create table BOARD(
+   idx int not null auto_increment,   -- 자동증가컬럼(1,2,3.....)
+   title varchar(100) not null,
+   contents varchar(4000) not null,
+   writer varchar(50) not null,
+   indate datetime not null default now(),
+   primary key(idx)
+);
+  
+  select * from BOARD
+  select * from BOARD where DATE_FORMAT(indate,'%Y-%m-%d')
+  select idx,title,contents,Date_FORMAT(indate,'%Y-%m-%d') AS indate from BOARD;
+  
+
+insert into BOARD values(1,'졸음운전 서비스 이용 안내','co-car의 졸음운전 알림 서비스를 이용하기 위해서는 사용자분들의 회원가입이 필수입니다.','관리자','2021-07-05');
+
+
+
 -- =======================테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
 
 -- MEMBERS Table Create SQL
@@ -237,6 +258,8 @@ select driving_starttime, driving_endtime,sum()from drivings, members where driv
       count(case when   classification='기타규정위반' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case8
       from corrective_history;
    </select>
+
+   
 -- 사용자 알림타입별 알람량
 select
       count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID='11' then 1 end) as '1time',

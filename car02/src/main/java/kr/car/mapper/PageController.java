@@ -26,11 +26,6 @@ public class PageController {
    private CMapper cMapper;
    
 
-   @RequestMapping("/usermain.do")
-     public String usermain () {
-      
-      return "usermain";
-   }
 
    @RequestMapping(value = "/loginAjax.do", method = RequestMethod.POST)
    public String loginFunction(MembersVO vo, HttpServletRequest request) {
@@ -173,6 +168,11 @@ public class PageController {
    }
    @RequestMapping("/login.do")
    public void login() {
+
+   }
+   
+   @RequestMapping("/notice.do")
+   public void notice() {
 
    }
 
