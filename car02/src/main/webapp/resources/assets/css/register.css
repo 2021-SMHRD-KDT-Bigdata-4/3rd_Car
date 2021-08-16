@@ -22,10 +22,10 @@ text-align: center;
 }
 
 .card{
-height: 300px;
+height: 400px;
 margin-top: auto;
 margin-bottom: auto;
-width: 400px;
+width: 410px;
 background-color: white;
 border-color: #12cbc4;
 outline:0;
@@ -78,8 +78,9 @@ background-color: white;
 .input-group-prepend span{
 width: 40px;
 background-color: white;
-color: black;
+color: #12cbc4;
 border:0 !important;
+margin-left: -10px;
 }
 
 input:focus{
@@ -89,11 +90,13 @@ box-shadow: 0 0 1 0 !important;
 }
 
 .remember{
-color: #000040;
+color: #12cbc4;
+font-weight: normal;
 }
 
 .remember input
 {
+font-weight: normal;
 width: 20px;
 height: 20px;
 margin-left: 15px;
@@ -101,14 +104,15 @@ margin-right: 5px;
 }
 
 .login_btn{
-color: #12cbc4;
-background-color: white;
+margin-top: -27px;   
+color: white;
+background-color: #12cbc4;
 width: 100px;
 }
 
 .login_btn:hover{
-color: white;
-background-color: #12cbc4;
+color: #12cbc4;
+background-color: white;
 }
 
 .links{

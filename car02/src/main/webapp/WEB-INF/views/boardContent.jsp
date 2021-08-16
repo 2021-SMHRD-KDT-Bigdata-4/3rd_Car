@@ -21,24 +21,10 @@
       <link rel="stylesheet" href="resources/assets/css/index.css" />
       <script type = "text/javascript">
       
-         function resultHtml(data){ 
-           var html="<table>";
-           html+="<tr>";
-           html+="<th>번호</th>";
-         html+="<th>제목</th>";
-         html+="<th>작성자</th>";
-         html+="<th>작성일</th>";
-         html+="</tr>";
-           // 반복문 ($.each())
-           $.each(data, (index,obj)=>{ 
-           html+="<tr>";
-          html+="<td id='idx"+index+"'>"+obj.idx+"</td>";
-           html+="<td>"+obj.title+"</td>";
-           html+="<td>"+obj.writer+"</td>";
-           html+="<td>"+obj.indate+"</td>";
-           
-           html+="</tr>";
-           });
+           function goDel(idx){
+              location.href="${cpath}/boardDelete.do?idx="+idx;
+           }
+
       </script>
       
    </head>
@@ -72,27 +58,31 @@
 
                  <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    
                                     <thead>
                                       
                                         <tr>
-                                            <th>번호</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>작성일</th>
+                                       
+                                            <th>${vo.title}</th>
+                                            
+                                           
  
                                         </tr>
                                     </thead>
                                     <tbody>
-                                  <c:forEach var="vo" items="${list}">
-                              <tr>
-                                <td>${vo.idx}</td>
-                                <!-- <td><a href="${cpath}/boardContent.do?idx=${vo.idx}">${vo.title}</a></td>-->
-                                <td><a href="${cpath}/boardContent.do?idx=${vo.idx}">${vo.title}</a></td>
-                            
-                                <td>${vo.writer}</td>
-                                <td>${vo.indate}</td>
-                             </tr>
-                           </c:forEach>
+                                   <tr>
+                                   <td>${vo.contents}
+                                   <br>
+                                   <br>
+                                   <br>
+                                   <br>
+                                   <br>
+                                   <br>
+                                   <br>
+                                   <br>
+                                   <br>
+                                   </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -100,9 +90,10 @@
                             <!-- 표 -->
 
                      <ul class="brd actions">
-                        
-                        <li><a href="${cpath}/boardForm.do" class="button">글쓰기</a></li>
-   
+                     
+                        <li><a href="${cpath}/notice.do" class="button">목록</a></li>
+                     
+                        <li><input type = "button" value="삭제" class="btn btn-sm" onclick="goDel(${vo.idx})"></li>
                      </ul>
 
                </div>
@@ -162,7 +153,6 @@
                </div>
 
          </div>
-
 
       <!-- Scripts -->
          <script src="resources/assets/js/jquery.min.js"></script>

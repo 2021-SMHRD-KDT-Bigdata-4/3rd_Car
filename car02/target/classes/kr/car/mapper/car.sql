@@ -222,12 +222,27 @@ select * from drivings;
 select *from drivings right outer join members on drivings.member_id=members.member_id where members.member_id='1234'
 select driving_starttime, driving_endtime,sum()from drivings, members where drivings.member_id=members.member_id and members.member_id='1234'
 
+
+   <select id="chclfChart"
+      resultType="kr.prison.domain.chclfChartVO"
+      parameterType="kr.prison.domain.CollectiveHistoryVO">
+      select
+      count(case when classification='폭행치사' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case1,
+      count(case when classification='폭행치상' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case2,
+      count(case when classification='교도관폭행' then 1 end and case when occuring_time between  #{startDate} and #{endDate} then 1 end) as case3,
+      count(case when classification='도주' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case4,
+      count(case when classification='변사' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case5,
+      count(case when   classification='병사' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case6,
+      count(case when   classification='밀수품반입' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case7,
+      count(case when   classification='기타규정위반' then 1 end and case when occuring_time between #{startDate} and #{endDate} then 1 end) as case8
+      from corrective_history;
+   </select>
 -- 사용자 알림타입별 알람량
 select
-      count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID='11' then 1 end) as '졸음1회알람',
-      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID='11' then 1 end) as '졸음2회알람',
-      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID='11' then 1 end) as '졸음3회알람',
-      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID='11' then 1 end) as '휴게알람'
+      count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID='11' then 1 end) as '1time',
+      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID='11' then 2 end) as '2times',
+      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID='11' then 3 end) as '3times',
+      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID='11' then 4 end) as 'rest'
       from Alarms;
       
 -- 사용자 알림시간별 알람량
@@ -243,7 +258,7 @@ select
       
 -- 관리자용 알림타입별 알람량
 select
-      count(case when ALARMTYPE_ID='1' then 1 end ) as '졸음1회알람',
+      count(case when ALARMTYPE_ID='1' then 1 end and case when DATE_FORMAT(ALARM_TIME,'%Y-%m-%d') between '2021-08-15' and '2021-08-31' then 1 end ) as '졸음1회알람',
       count(case when ALARMTYPE_ID='2' then 2 end ) as '졸음2회알람',
       count(case when ALARMTYPE_ID='3' then 3 end ) as '졸음3회알람',
       count(case when ALARMTYPE_ID='4' then 4 end ) as '휴게알람'

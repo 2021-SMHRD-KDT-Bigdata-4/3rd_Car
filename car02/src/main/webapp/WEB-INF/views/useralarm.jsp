@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="cpath" value="${pageContext.request.contextPath}" />
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>  
 
-<!--
-   Editorial by HTML5 UP
-   html5up.net | @ajlkn
-   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->  
+
 <html>
 <head>
 <title>Car</title>
@@ -24,29 +20,29 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(alarm_count);
+function aaa(dataa) {
+    alert("여끼까지 오면 aa가 불러와진것");
 
-      function timesend(){
-    	  
-      }
-      
-      function alarm_count(dataaa) {
-    	 
+    google.charts.load('current', {
+       packages : [ 'corechart', 'bar' ]
+    });
+    google.charts.setOnLoadCallback(alarmcount);
+
+	
+function alarmcount() {
+    	  alert(typeof (dataa[0].sleep_1time));
+
         var data = new google.visualization.arrayToDataTable([
           ['확인필요', 'Percentage'],
-          ["졸음경고 1회", 54],
-          ["졸음경고 2회", 24],
-          ["졸음경고 3회", 11],
-          ["휴식알람", 12]
-        ]);
+          ["졸음경고 1회", dataa[0].sleep_1time],
+          ["졸음경고 2회", dataa[1].sleep_2times],
+          ["졸음경고 3회", dataa[2].sleep_3times],
+          ["휴식알람", dataa[3].rest_alarm]]);
 
         var options = {
-          width: 800,
+          width: 500,
           legend: { position: 'none' },
-          chart: {
-            title: '알림별 울림횟수',
-            subtitle: '졸지맙시다~~!' },
+          chart: {title: '알림별 울림횟수'},
           axes: {
             x: {
               0: { side: 'top', label: '알림'} // Top x-axis.
@@ -56,14 +52,32 @@
         };
 
         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-        // Convert the Classic options to Material options.
         chart.draw(data, google.charts.Bar.convertOptions(options));
-      };
+      }
+  	
 
+  	function choosedate() {
+  		
+		var formData = $("#frm").serialize();
+		alert(formData)
+		$.ajax({ 
+			url : "${cpath}/alarmtype_statistics.do", 
+			type : "post", 
+			data : formData,
+			success : function(dataa) {
+				alert("데이터 확인");
+				callback(dataa)
+			}, 
+			dataType : "JSON",
+			error : function(request,status,error) {
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			} 
+		});
+		
+  	} 
+      
+      
 
-
-   
-   
 </script>
 </head>
 <body class="is-preload">
@@ -148,10 +162,10 @@
 
             <br /> <br /> <br /> <br />
             	<p>제목</p>
-            	<form action="choosedate.do">
-            	<input type="date" name="startdate"> ~ <input type="date" name="enddate">
-            	<button onclick="alarm_count()">조회하기</button>
+            	<form id="frm" name="frm" method="post">
+            	<button onclick="choosedate()">조회하기</button>
             	</form>
+            	
              <div id="top_x_div" style="width: 800px; height: 600px;"></div>
             <br /> <br /> <br /> <br />
 			

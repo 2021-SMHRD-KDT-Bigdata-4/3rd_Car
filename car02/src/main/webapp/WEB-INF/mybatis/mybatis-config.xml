@@ -10,7 +10,7 @@
 	    <typeAlias type="kr.car.domain.HabitsVO" alias="habitsVO"/>
 	    <typeAlias type="kr.car.domain.RestsVO" alias="restsVO"/>
 	    <typeAlias type="kr.car.domain.RestareasVO" alias="restareasVO"/>
-	    
+	    <typeAlias type="kr.car.domain.BoardVO" alias="boardVO"/>
 		<!-- <typeAlias type="kr.smhrd.domain.BoardVO" alias="boardVO"/>
 		<typeAlias type="kr.smhrd.domain.SearchVO" alias="searchVO"/> -->
 	</typeAliases>

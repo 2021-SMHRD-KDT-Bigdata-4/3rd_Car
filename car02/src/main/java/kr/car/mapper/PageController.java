@@ -59,13 +59,14 @@ public class PageController {
           
       }
    
-   //운전시작버튼
+ //운전시작버튼
    @RequestMapping(value ="/dstart.do")
    @ResponseBody
-   public int dstart(DrivingVO vo) throws Exception{
-      System.out.println(vo.getMember_id());
-      int cnt = cMapper.dstart(vo);
-      return 1;
+   public String dstart(String member_id) throws Exception{
+      System.out.println(member_id);      
+       cMapper.dstart(member_id);             
+       cMapper.after2(member_id);
+      return "redirect:/usermain.do";
    }
    
    //운전종료버튼
@@ -77,7 +78,7 @@ public class PageController {
       return 1;
    }
 
-   //운전시작버튼
+   //휴식시작버튼
    @RequestMapping(value ="/rstart.do")
    @ResponseBody
    public int rest_start(RestsVO vo) throws Exception{
@@ -98,41 +99,42 @@ public class PageController {
    //유저
    @RequestMapping("/useralarm.do")
    public String useralarm1(String member_id, Model model) {
-	   
       List<DrivingVO> list1 = cMapper.drivingList(member_id);
       List<RestsVO> list2 = cMapper.restsList(member_id);
-      model.addAttribute("list1", list1);  //add=> container session=브라우저
+      model.addAttribute("list1", list1);
       model.addAttribute("list2", list2);
       return "useralarm";
    }
    
-//   //알람별 통계
-//   @RequestMapping("/choosedate.do")
-//   public @ResponseBody void weekshow (Model model ,AlarmCountVO vo) {
-//	   vo.getAlarmStart() = cMapper.drivingList(member_id);
-//	   
-//	   
-//	   
-//   }
-//   
-//   @RequestMapping("/alarm_count.do")
-//   public  @ResponseBody AlarmCountVO (AlarmsVO vo, Model model){
-//	   System.out.println(vo.alarmStart());
-//	   AlarmCountVO data1 = cMapper.alarm_count();
-//	   data1.set
-//	 return  
+
+   @RequestMapping("/usermain.do")
+     public String usermain (String member_id,  Model model) {
+      
+      return "usermain";
+   }
+   
+
+   //알람타입별 통계
+//   @RequestMapping("/alarmtype_statistics.do")
+//   public @ResponseBody AlarmCountVO alarmcount(AlarmsVO vo, Model model) {
+//     AlarmCountVO dataa = cMapper.alarmcount(vo);
+//     dataa.setStartDate(String.valueOf(vo.getAlarm_time()));
+//     dataa.setEndDate(String.valueOf(vo.getAlarm_time()));
+//     System.out.println(dataa);
+//      return dataa;
 //   }
    
-//   @RequestMapping("/corrective_history_clfchart.do")
-//   public @ResponseBody chclfChartVO corrective_history_clfchart(CollectiveHistoryVO vo, Model model) {
-//      System.out.println(vo.getStartDate());
-//      chclfChartVO data1 = prisonMapper.chclfChart(vo);
-//      data1.setStartDate(String.valueOf(vo.getStartDate()));-date차트제목
-//      data1.setEndDate(String.valueOf(vo.getEndDate()));
-//      System.out.println(data1);
-//      return data1;
-   			//DriveVO driveVO = cMapper.
-//   }
+   @RequestMapping("/alarmtype_statistics.do")
+   public @ResponseBody List<AlarmCountVO> alarmcount(AlarmsVO vo, Model model) {
+	   System.out.println(vo.toString());
+      List<AlarmCountVO> dataa = cMapper.alarmcount(vo);
+//      for (int i = 0; i < dataa.size(); i++) {
+//         dataa.get(i).setStartDate(String.valueOf(vo.getAlarm_time()));
+//         dataa.get(i).setEndDate(String.valueOf(vo.getAlarm_time()));
+//      }
+     System.out.println(dataa);
+      return dataa;
+   }
 
  
    
