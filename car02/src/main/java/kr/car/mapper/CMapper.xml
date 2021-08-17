@@ -8,12 +8,21 @@
 	 select * from members where member_id= #{member_id} and password = #{password}
 	</select>
 	
+    <!-- 관리자 로그인 -->
+    <select id="adminloginFunction"  resultType="kr.car.domain.MembersVO">
+	 select * from members where member_id= #{member_id} and password = #{password}
+	</select>
+	
    <select id="drivingList" resultType="DrivingVO">
+<<<<<<< HEAD
    
     select DRIVING_ID, driving_starttime, driving_endtime from drivings,members 
     where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d') 
     and drivings.member_id=members.member_id and members.member_id=#{member_id}
     
+=======
+    select driving_starttime, driving_endtime from drivings, members where drivings.member_id=members.member_id and members.member_id='1234'
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-4/3rd_Car.git
     </select>
     
     <select id="restsList" resultType="restsVO">
@@ -23,10 +32,16 @@
     <insert id="dstart" parameterType="DrivingVO">
       insert into drivings(driving_starttime,member_id) values(now(),#{member_id});
     </insert>
-     <insert id="after2" parameterType="AlarmsVO">
-      insert into alarms( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(DATE_ADD(NOW(), INTERVAL 3 SECOND), #{MEMBER_ID}, '4');
-     </insert>
     
+     <insert id="after2" parameterType="AlarmsVO">
+      insert into alarms( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(DATE_ADD(NOW(), INTERVAL 60 SECOND), #{MEMBER_ID}, '4');
+     </insert>
+     
+    <!-- 데이터 들어가아아아아아아아ㅏㅣㅏㅇ아갖다ㅣㄱ다ㅓ디ㅏㅓㅏㄹㄷㄷ -->
+     <insert id="alarmdata" parameterType="AlarmsVO">
+      insert into alarms(ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(now(), #{member_id}, #{alarmtype_id});
+     </insert>
+     
 
     <update id="dend" parameterType="DrivingVO">
 	 UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and member_id=#{member_id};
@@ -51,7 +66,7 @@
            
     </select>
 	
-        <select id = "boardList" resultType="BoardVO">
+        <select id = "boardList" resultType="boardVO">
          select idx,title,contents,writer,Date_FORMAT(indate,'%Y-%m-%d') AS indate from BOARD;
     </select>    
     
@@ -63,6 +78,11 @@
     <delete id="boardDelete" parameterType="int">
         delete from BOARD where idx=#{idx}
    </delete>
+   
+    <insert id="memberInsert" parameterType="MembersVO">
+        insert into members(member_id,password,member_name,gender,company,age) 
+        values(#{member_id},#{password},#{member_name},#{gender},#{company},#{age})
+    </insert>
 
     
 </mapper>

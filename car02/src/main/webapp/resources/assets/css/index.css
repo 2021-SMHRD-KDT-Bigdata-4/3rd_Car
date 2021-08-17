@@ -1310,9 +1310,6 @@ ul {
   list-style: disc;
   margin: 0 0 2em 0;
   padding-left: 1em; }
-.brd {
-  float: right;
-  display:inline-block;}
   ul li {
     padding-left: 0.5em; }
   ul.alt {

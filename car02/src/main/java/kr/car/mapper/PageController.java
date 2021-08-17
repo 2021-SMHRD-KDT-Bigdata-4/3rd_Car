@@ -26,9 +26,27 @@ public class PageController {
 
    @Inject
    private CMapper cMapper;
-   
+   //관리자 로그인
+   @RequestMapping(value = "/adminloginAjax.do", method = RequestMethod.POST)
+   public String adminloginFunction(MembersVO vo, HttpServletRequest request) {
 
+      MembersVO result = cMapper.loginFunction(vo);
+      System.out.println(result);
+      HttpSession session = request.getSession();
+      if (result == null) {
+         
+         session.setAttribute("msg", "사용자 정보가 올바르지 않습니다.");
+      } else {
+         session = request.getSession();
+         session.setAttribute("MembersVO", result);
+      }
+      
+      System.out.println("로그인확인");
+      
+      return "redirect:/main.do";
+   }
 
+   //유저 로그인
    @RequestMapping(value = "/loginAjax.do", method = RequestMethod.POST)
    public String loginFunction(MembersVO vo, HttpServletRequest request) {
 
@@ -60,9 +78,38 @@ public class PageController {
    @RequestMapping(value ="/dstart.do")
    @ResponseBody
    public String dstart(String member_id) throws Exception{
-      System.out.println(member_id);      
+      //System.out.println(member_id);      
        cMapper.dstart(member_id);             
        cMapper.after2(member_id);
+       //System.out.println(member_id);
+       //cMapper.alarmdata(member_id, alarmtype_id);
+      return "redirect:/usermain.do";
+   }
+   int onecnt=0;
+   int twocnt=0;
+   int threecnt=0;
+   @RequestMapping(value ="/alarmdata.do")
+   @ResponseBody
+   public String alarmdata(AlarmsVO vo, int alarmtype_id) throws Exception{
+      //System.out.println(alarmtype_id);
+
+      int num= alarmtype_id;
+      
+      if(num == 1 && onecnt<1) {
+    	  cMapper.alarmdata(vo);
+    	  onecnt++;
+    	  //System.out.println("onecnt="+onecnt);
+      }else if(num ==2 && twocnt<1) {
+    	  cMapper.alarmdata(vo);
+    	  twocnt++;
+    	  //System.out.println("twocnt="+twocnt);
+      }else if(num ==3 && threecnt<1) {
+    	  cMapper.alarmdata(vo);
+    	  threecnt++;
+    	  //System.out.println("threecnt="+threecnt);
+      }
+      
+      
       return "redirect:/usermain.do";
    }
    
@@ -130,6 +177,9 @@ public class PageController {
    }
    @RequestMapping("/admin.do")
    public void admin() {
+   }
+   @RequestMapping("/adminlogin.do")
+   public void adminlogin() {
    }
 
    @RequestMapping("/basic1.do")

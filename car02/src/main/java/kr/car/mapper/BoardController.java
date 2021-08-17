@@ -1,7 +1,9 @@
 package kr.car.mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.car.domain.BoardVO;
+import kr.car.domain.MembersVO;
 
 
 
@@ -32,8 +35,7 @@ public class BoardController {   // new BoardController(); -> Spring Container(D
    @GetMapping("/notice.do")
    public void boardList(Model model) {
       List<BoardVO> list = CMapper.boardList();      
-       model.addAttribute("list", list); 
-      
+       model.addAttribute("list", list);  
    }
    
 
@@ -63,6 +65,13 @@ public class BoardController {   // new BoardController(); -> Spring Container(D
       return "redirect:/notice.do"; 
    }
    
+   @PostMapping("/memberInsert.do")
+   public String memberInsert(MembersVO vo) {
+      CMapper.memberInsert(vo);
+      return "redirect:/login.do";
+   }
+   
+
 
    
 }
