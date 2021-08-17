@@ -212,10 +212,6 @@ public class PageController {
 
    }
    
-   @RequestMapping("/notice.do")
-   public void notice() {
-
-   }
    
    @RequestMapping("/rest_mn.do")
    public void rest_mn() {
@@ -227,10 +223,22 @@ public class PageController {
 
    }
    
-   @RequestMapping("/sleep_mn.do")
-   public void sleep_mn() {
+
+   
+   @RequestMapping("/user_notice.do")
+   public void user_notice() {
 
    }
+   
+   @RequestMapping("/user_boardContent.do")
+	public void user_boardContent(int idx, Model model) {
+		BoardVO vo = cMapper.boardContent(idx);
+		model.addAttribute("vo",vo);
+		//return "boardContent";
+
+   }
+   
+
  
    
    

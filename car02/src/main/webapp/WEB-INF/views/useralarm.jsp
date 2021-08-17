@@ -241,56 +241,40 @@ function aaa(dataa){
                   <h2>Menu</h2>
                </header>
                <ul>
-                  <li><a href="usermain.do">메인</a></li>
+                  <li><a href="${cpath}/usermain.do">메인</a></li>
 
-                  <li><a href="mypage.jsp">마이페이지 <!-- 여기는 오늘 하루 알람 보여주는 페이지 -->
-                  </a></li>
-                  <li><span class="opener">알람</span>
-                     <ul>
-                        <li><a href="useralarm1">일자별 졸음 알람(주간)</a></li>
-                        <li><a href="useralarm2">시간별 졸음 알람(주간)</a></li>
-                        <li><a href="useralarm3">일자별 졸음 알람(월간)</a></li>
-                        <li><a href="useralarm4">시간별 졸음 알람(월간)</a></li>
-                     </ul></li>
-                  <li><a href="informagion.jsp">정보</a></li>
-
+                  <li><a href="${cpath}/useralarm.do">알람</a></li>
+                    
+                  <li><a href="${cpath}/information.do">정보</a></li>
+				  <li><a href="${cpath}/user_notice.do">공지사항</a></li>
                </ul>
             </nav>
 
 
-            <!-- Section -->
-            <section>
-               <header class="major">
-                  <h2>Get in touch</h2>
-               </header>
-               <p>Sed varius enim lorem ullamcorper dolore aliquam aenean
-                  ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin
-                  sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat
-                  tempus aliquam.</p>
-               <ul class="contact">
-                  <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-                  <li class="icon solid fa-phone">(000) 000-0000</li>
-                  <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-                     Nashville, TN 00000-0000
-                  </li>
-               </ul>
-               <ul class="actions">
-                  <li><a href="#" class="button">More</a></li>
-               </ul>
-            </section>
+               <!-- Section -->
+                        <section>
+                           <header class="major">
+                              <h2>스마트인재개발원</h2>
+                           </header>
+                           <p>김은혜, 고희경, 남수환, 박윤빈, 신근아</p>
+                           <ul class="contact">
+                              <li class="icon solid fa-envelope"><a href="#">E-Mail : smhrd@smhrd.or.kr</a></li>
+                              <li class="icon solid fa-phone">TEL. 062-655-3509  </li>
+                              <li class="icon solid fa-home">스마트인재 개발원<br />
+                              광주광역시 남구 송암로60 광주CGI센터 2층 <br />FAX. 062-655-3510</li>
+                           </ul>
+                           
+                        </section>
 
-            <!-- Footer -->
-            <footer id="footer">
-               <p class="copyright">
-                  &copy; 제작자 : 빈솬조 <a href="https://unsplash.com">/이미지 참조</a> <a
-                     href="https://html5up.net">/디자인 참조</a>.
-               </p>
-            </footer>
+                     <!-- Footer -->
+                        <footer id="footer">
+                           <p class="copyright">&copy; 제작자 : 빈솬조 <a href="https://unsplash.com">/이미지 참조</a> <a href="https://html5up.net">/디자인 참조</a>.</p>
+                        </footer>
+
+                  </div>
+               </div>
 
          </div>
-      </div>
-
-   </div>
 
    <!-- Scripts -->
    <script src="resources/assets/js/jquery.min.js"></script>

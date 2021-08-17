@@ -55,7 +55,9 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
     public void boardInsert(BoardVO vo); //insert SQL~   
     @Select("select * from BOARD where idx=#{idx}")
     public BoardVO boardContent(int idx); // select SQL~
-       
+    
+    public BoardVO user_boardContent(int idx);
+    
     public void boardDelete(int idx);
 
     public void memberInsert(MembersVO vo); 

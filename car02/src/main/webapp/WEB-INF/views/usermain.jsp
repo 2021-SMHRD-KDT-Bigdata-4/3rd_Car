@@ -239,9 +239,9 @@ String id = vo.getMember_id();%>
          <div class="inner">
 
             <!-- Search -->
-            <section id="search" class="alt">
-               <form method="post" action="#">
-                  <input type="text" name="query" id="query" placeholder="Search" />
+            <section id="search1" class="alt">
+               <form >
+                 
                </form>
             </section>
 
@@ -252,17 +252,12 @@ String id = vo.getMember_id();%>
                </header>
                <ul>
                   <li><a href="usermain.do">메인</a></li>
-                  </a>
-                  </li>
-                  <li><span class="opener">알람</span>
-                     <ul>
-                        <li><a href="useralarm.do">일자별 졸음 알람(일간)</a></li>
-                        <li><a href="useralarm2.do">시간별 졸음 알람(일간)</a></li>
-                        <li><a href="useralarm3.do">일자별 졸음 알람(월간)</a></li>
-                        <li><a href="useralarm4.do">시간별 졸음 알람(월간)</a></li>
-                     </ul></li>
+                  
+                  
+                   <li><a href="information.do">알람</a></li>
+  
                   <li><a href="information.do">정보</a></li>
-                  <li><a href="notice.do">공지사항</a></li>
+                  <li><a href="user_notice.do">공지사항</a></li>
                </ul>
             </nav>
 
