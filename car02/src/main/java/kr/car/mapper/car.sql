@@ -122,7 +122,9 @@ insert into alarms( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(now(), #{MEMBER_ID
 insert into ALARMS( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(now(), '16', '1');
 select * from alarms where member_id='16';  
 select * from alarms where member_id='17'; 
-select * from alarms where member_id='15'; 
+select * from alarms where member_id='15';
+select * from alarms where member_id='aa';
+
 select *from drivings        
         
 -- ALARMS Table Create SQL

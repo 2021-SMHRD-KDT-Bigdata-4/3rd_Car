@@ -22,7 +22,7 @@ text-align: center;
 }
 
 .card{
-height: 300px;
+height: 350px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
@@ -83,11 +83,33 @@ border:0 !important;
 }
 
 input:focus{
+   
 outline: 0 0 0 0  !important;
 box-shadow: 0 0 1 0 !important;
 
 }
 
+li {
+list-style: none;
+padding-left: -10;   
+}
+
+ul li{
+list-style: none;
+padding-left: -10;   
+}
+
+.kakao {
+list-style: none;
+padding-left: -10;   
+}
+
+ul {
+list-style: none;
+padding-left: -10;   
+}
+   
+}
 .remember{
 color: #000040;
 }

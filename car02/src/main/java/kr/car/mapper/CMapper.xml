@@ -58,7 +58,7 @@
            
     </select>
 	
-        <select id = "boardList" resultType="BoardVO">
+        <select id = "boardList" resultType="boardVO">
          select idx,title,contents,writer,Date_FORMAT(indate,'%Y-%m-%d') AS indate from BOARD;
     </select>    
     
@@ -70,6 +70,11 @@
     <delete id="boardDelete" parameterType="int">
         delete from BOARD where idx=#{idx}
    </delete>
+   
+    <insert id="memberInsert" parameterType="MembersVO">
+        insert into members(member_id,password,member_name,gender,company,age) 
+        values(#{member_id},#{password},#{member_name},#{gender},#{company},#{age})
+    </insert>
 
     
 </mapper>

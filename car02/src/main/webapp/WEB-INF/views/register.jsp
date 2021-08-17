@@ -44,43 +44,52 @@
             
          </div>
          <div class="card-body">
-            <form>
+         <form id = "frm2" method = "post" action="${cpath}/memberInsert.do">
+            
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="아이디">                  
+                  <input type="text" class="form-control" id="member_id" name="member_id" placeholder="아이디">
+                                    
                </div>
                
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="비밀번호">
+                  <input type="text" class="form-control" id="password" name="password" placeholder="비밀번호">
                </div>
                
+               <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="member_name" name="member_name" placeholder="이름">                  
+               </div>
+
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-building"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="회사">                  
+                  <input type="text" class="form-control" id="company" name="company" placeholder="회사">                  
                </div>
                
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
                   </div>
-                  <input type="age" class="form-control" placeholder="나이">                  
+                  <input type="text" class="form-control" id="age" name="age" placeholder="나이">                  
                </div>
                
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
                   </div>
-                  <input type="gender" class="form-control" placeholder="성별">                  
+                  <input type="text" class="form-control" id="gender" name="gender" placeholder="성별">               
                </div>
                
-               
+              
                
                <div class="row align-items-center remember">
                   <input type="checkbox">계정 저장하기
@@ -88,12 +97,13 @@
                <div class="form-group">
                   <input type="submit" value="로그인" class="btn float-right login_btn">
                </div>
+               
             </form>
          </div>
 
          </div>
       </div>
    </div>
-</div>
+
 </body>
 </html>

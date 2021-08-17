@@ -48,6 +48,8 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
     //차트만들기
     public List<AlarmCountVO> alarmcount(AlarmsVO vo);
     
+    
+    
     //게시판
     public List<BoardVO> boardList();  
     public void boardInsert(BoardVO vo); //insert SQL~   
@@ -56,6 +58,7 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
        
     public void boardDelete(int idx);
 
+    public void memberInsert(MembersVO vo); 
 	
     		
 }
