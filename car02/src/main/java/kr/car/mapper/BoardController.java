@@ -38,6 +38,12 @@ public class BoardController {   // new BoardController(); -> Spring Container(D
        model.addAttribute("list", list);  
    }
    
+   @GetMapping("/user_notice.do")
+   public void boardList2(Model model) {
+      List<BoardVO> list = CMapper.boardList();      
+       model.addAttribute("list", list);  
+   }
+   
 
    @RequestMapping("/boardForm.do")
    public void boardForm() { 
@@ -70,6 +76,18 @@ public class BoardController {   // new BoardController(); -> Spring Container(D
       CMapper.memberInsert(vo);
       return "redirect:/login.do";
    }
+   
+   @RequestMapping("/notice.do")
+   public void notice() {
+
+   }
+   
+   @RequestMapping("/sleep_mn.do")
+   public void sleep_mn() {
+
+   }
+   
+
    
 
 

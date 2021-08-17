@@ -211,10 +211,6 @@ public class PageController {
 
    }
    
-   @RequestMapping("/notice.do")
-   public void notice() {
-
-   }
    
    @RequestMapping("/rest_mn.do")
    public void rest_mn() {
@@ -231,13 +227,30 @@ public class PageController {
 		   
    }
    
+<<<<<<< HEAD
    @RequestMapping("/sleep_mn.do")
    public String sleep_mn(Model model) {  
    List<DrivingVO> list = cMapper.addrivingList();
    model.addAttribute("list", list);
    return "sleep_mn";
+=======
+
+   
+   @RequestMapping("/user_notice.do")
+   public void user_notice() {
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-4/3rd_Car.git
 
    }
+   
+   @RequestMapping("/user_boardContent.do")
+	public void user_boardContent(int idx, Model model) {
+		BoardVO vo = cMapper.boardContent(idx);
+		model.addAttribute("vo",vo);
+		//return "boardContent";
+
+   }
+   
+
  
    
    

@@ -118,11 +118,10 @@
                               <h2>메뉴</h2>
                            </header>
                            <ul>
-                              <li><a href="index.jsp">메인</a></li>
-                              <li><a href="user_mn.jsp">회원관리</a></li>
-                              <li><a href="sleep_mn.jsp">졸음운전 관리</a></li>
-                              <li><a href="mypage.jsp">휴식시간 관리</a></li>
-                              <li><a href="mypage.jsp">공지사항</a></li>
+                              <li><a href="${cpath}/web/usermain.do">메인</a></li>
+                              <li><a href="${cpath}/web/useralarm.do">알람</a></li>
+                              <li><a href="${cpath}/web/information.do">정보</a></li> 
+                              <li><a href="${cpath}/web/user_notice.do">공지사항</a></li>
                                     
                               
                            </ul>
