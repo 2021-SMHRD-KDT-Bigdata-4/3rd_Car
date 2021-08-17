@@ -78,5 +78,8 @@
         values(#{member_id},#{password},#{member_name},#{gender},#{company},#{age})
     </insert>
 
+    <select id="member_List" resultType="MembersVO">
+        select * from members
+    </select>
     
 </mapper>

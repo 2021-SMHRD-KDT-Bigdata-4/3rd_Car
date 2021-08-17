@@ -48,7 +48,9 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
     //차트만들기
     public List<AlarmCountVO> alarmcounts(AlarmsVO vo);
     
-    
+    //회원조회
+    public List<MembersVO> member_List();
+    public List<DrivingVO> addrivingList();
     
     //게시판
     public List<BoardVO> boardList();  

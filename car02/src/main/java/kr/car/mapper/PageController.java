@@ -43,7 +43,7 @@ public class PageController {
       
       System.out.println("로그인확인");
       
-      return "redirect:/main.do";
+      return "redirect:/admin.do";
    }
 
    //유저 로그인
@@ -88,6 +88,10 @@ public class PageController {
    int onecnt=0;
    int twocnt=0;
    int threecnt=0;
+   
+   
+   
+   //알림데이터삽입
    @RequestMapping(value ="/alarmdata.do")
    @ResponseBody
    public String alarmdata(AlarmsVO vo, int alarmtype_id) throws Exception{
@@ -107,9 +111,7 @@ public class PageController {
     	  cMapper.alarmdata(vo);
     	  threecnt++;
     	  //System.out.println("threecnt="+threecnt);
-      }
-      
-      
+      }  
       return "redirect:/usermain.do";
    }
    
@@ -171,17 +173,16 @@ public class PageController {
    }
  
    
-   @RequestMapping("/main.do")
-   public void main() {
-
-   }
    @RequestMapping("/admin.do")
    public void admin() {
    }
+   
+   
    @RequestMapping("/adminlogin.do")
    public void adminlogin() {
    }
 
+   
    @RequestMapping("/basic1.do")
    public void basic1() {
    }
@@ -198,9 +199,7 @@ public class PageController {
    public void register() {
    }
 
-   @RequestMapping("/table.do")
-   public void table() {  
-   } 
+
    @RequestMapping("/information.do")
    public void information() {
    }
@@ -222,13 +221,21 @@ public class PageController {
 
    }
  
+   
+   //관리자- 운전자 조회
    @RequestMapping("/user_mn.do")
-   public void user_mn() {
-
+   public String user_mn( Model model) {
+	 	      List<MembersVO> list = cMapper.member_List();
+		      model.addAttribute("list", list);
+		      return "user_mn";
+		   
    }
    
    @RequestMapping("/sleep_mn.do")
-   public void sleep_mn() {
+   public String sleep_mn(Model model) {  
+   List<DrivingVO> list = cMapper.addrivingList();
+   model.addAttribute("list", list);
+   return "sleep_mn";
 
    }
  

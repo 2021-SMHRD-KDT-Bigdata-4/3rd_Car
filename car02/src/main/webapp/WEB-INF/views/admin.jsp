@@ -28,7 +28,7 @@
                         <header id="header">
                            <a href="index.html" class="logo"><strong>당신의 안전을 책임지는</strong> co-car</a>
                            <ul class="icons">
-                              <li><a href="login.jsp">Login / Logout</a></li>
+                              <li><a href="${cpath}/logoutAjax.do"> Logout</a></li>
                            </ul>
                         </header>
 
@@ -45,7 +45,7 @@
                               
                            </div>
                            <span class="image object">
-                              <img src="resources/images/admin.jpg" alt="" />
+                              <img src="${cpath}resources/images/car.jpg" alt="" />
                            </span>
                         </section>
 
@@ -113,12 +113,11 @@
                               <h2>메뉴</h2>
                            </header>
                            <ul>
-                              <li><a href="index.jsp">메인</a></li>
-                              <li><a href="user_mn.jsp">회원관리</a></li>
-                              <li><a href="sleep_mn.jsp">졸음운전 관리</a></li>
-                              <li><a href="rest_mn.jsp">휴식시간 관리</a></li>
-                              <li><a href="notice.jsp">공지사항</a></li>
-                                    
+                              <li><a href="admin.do">메인</a></li>
+                              <li><a href="user_mn.do">회원관리</a></li>
+                              <li><a href="sleep_mn.do">졸음운전 관리</a></li>
+                              <li><a href="rest_mn.do">휴식시간 관리</a></li>
+                              <li><a href="notice.do">공지사항</a></li>
                               
                            </ul>
                         </nav>
