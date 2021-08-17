@@ -24,9 +24,17 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 	//로그인 매핑
 	public MembersVO loginFunction(MembersVO vo);
 	
+	//관리자 로그인
+	public MembersVO adminloginFunction(MembersVO vo);
+	
 	//운전시작.종료
     public int dstart(String member_id);
     public int after2(String member_id);
+    //setInterval
+    public int alarmdata(AlarmsVO vo);
+
+    
+    
 	public int dend(DrivingVO vo);
 
 	//휴식시작.종료
@@ -48,5 +56,6 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
        
     public void boardDelete(int idx);
 
+	
     		
 }

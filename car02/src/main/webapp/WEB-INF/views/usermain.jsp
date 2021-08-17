@@ -26,10 +26,13 @@
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">   
-
+	
+	
+	
+	
    //================================
-   var audio1 = new Audio("${pageContext.request.contextPath}/resources/Music/AnneMarie-2002.mp3");
-   var audio2 = new Audio("${pageContext.request.contextPath}/resources/Music/Billie Eilish - bad guy.mp3");
+   var audio1 = new Audio("${pageContext.request.contextPath}/resources/Music/Anne Marie - 2002.mp3");
+   var audio2 = new Audio("${pageContext.request.contextPath}/resources/Music/CHUNG HA - 벌써 12시.mp3");
    var audio3 = new Audio("${pageContext.request.contextPath}/resources/Music/Itzy - Dalla Dalla.mp3");
    var audio4 = new Audio("${pageContext.request.contextPath}/resources/Music/TWICE - FANCY.mp3");
    /* audio1은 그냥 재생됨. 졸음알람1*/
@@ -51,40 +54,88 @@
        
    
    
-<%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
+   <%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
 String id = vo.getMember_id();%>
 
+
    
+
    function driveS() {
       setTimeout(function() {
-         audio1.play();
-      }, 10000);
+         audio4.play();
+      }, 60000);
         var member_id = '<%=id%>';
-        //alert(member_id);
-        //var alarm_id = ;
+        
         $.ajax({
                type : "get",
                url: "${cpath}/dstart.do",
                 data : {"member_id" : member_id},
-               success : function() {
-               alert("운전시작!");
-            },
-               error:function(){
-                  alert("실패");
+                error:function(){
+                  alert("drivins_starttime실패");
                }
              });
         $("#realtime-video").show();
-       } 
+        
+        setInterval(function(){
+            var member_id = '<%=id%>';
+            var memberdata = {"member_id" : member_id};
+              $.ajax({
+               url : 'http://59.0.129.202:5000/cnt',
+               type : 'post',
+               data : JSON.stringify(memberdata),
+               dataType : 'JSON',
+               contentType: "application/json",
+               success : postdata,
+               error : function(){alert("ajax 통신 실패")}
+              })
+                 }, 1000)
+           
+         	
+           function postdata(data){
+            var member_id = data['member_id'];
+            var alarmtype_id = data['alarmtype_id'];
+            
+            
+            
+            if(alarmtype_id == '1'){
+            	audio1.play();
+         }else if(alarmtype_id == '2'){
+        	 audio1.pause();
+        	 audio2.play();
+         }else if(alarmtype_id == '3'){
+        	 audio2.pause();
+        	 audio3.play();	 
+         }else {
+        	audio3.pause();
+         } 
+            
+            $.ajax({
+                type : "get",
+                url: "${cpath}/alarmdata.do",
+                 data : {"member_id" : member_id, "alarmtype_id" : alarmtype_id}
+                 /* success : function(){
+                     alert("칭찬해칭찬해");
+                 },                 error:function(){
+                   alert("알람 insert 실패");
+                   //초반에 alarmtype_id=0일때 실패로 떠서 여기도 주석해야한다.
+                }
+             */
+
+              }); //alarms 데이터 insert 끝
+            
+   }   //setInterval 끝
+   } //DRIVES 끝
+      
+      
+   
+   
    function driveEnd() {
         var member_id = '<%=id%>';
         $.ajax({
                type : "get",
                url: "${cpath}/dend.do",
-                data : {"member_id" : member_id},
-               success : function(data) {
-               alert("운전종료!");
-            },
-             error:function(request,status,error){
+               data : {"member_id" : member_id},
+               error:function(request,status,error){
                       alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                    }
                   });
@@ -179,28 +230,6 @@ String id = vo.getMember_id();%>
 
                </div>
             </section>
-
-            <!-- 테스트 위치 -->
-            <div>
-               <c:set var="today" value="<%=new java.util.Date()%>" />
-               <!-- 현재날짜 -->
-               <c:set var="date">
-                  <fmt:formatDate value="${today}" pattern="yyyy-MM-dd hh:mm:ss" />
-               </c:set>
-
-               <!-- 데이터 뿌릴때 -->
-               <c:out value="${date}" />
-               <%-- <a>${MembersVO.member_name.AlarmsVO.alarm_time}</a> --%>
-               <a>${AlarmsVO.alarm_time}</a>
-
-               <!--  -->
-               <%-- <c:if test="{(${AlarmsVO.alarm_time}).equals(${date})}">
-                  audio4.play();
-               </c:if> --%>
-
-
-            </div>
-
 
          </div>
       </div>

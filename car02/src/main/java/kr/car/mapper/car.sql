@@ -33,6 +33,8 @@ insert into BOARD values(1,'졸음운전 서비스 이용 안내','co-car의 졸
 
 
 
+
+
 -- =======================테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
 
 -- MEMBERS Table Create SQL
@@ -90,7 +92,7 @@ CREATE TABLE ALARMTYPES
     `ALARMTYPE_NAME`  VARCHAR(100)    NULL        COMMENT '알람타입명', 
      PRIMARY KEY (ALARMTYPE_ID)
 );
-
+select * from ALARMTYPES;
 ALTER TABLE ALARMTYPES COMMENT '알람타입정보';
 
 
@@ -113,6 +115,16 @@ ALTER TABLE HABITS
     ADD CONSTRAINT FK_HABITS_MEMBER_ID_MEMBERS_MEMBER_ID FOREIGN KEY (MEMBER_ID)
         REFERENCES MEMBERS (MEMBER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+        
+-- 알람 아이디, 알람 타입 데이터 삽입 테스트
+-- 여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+insert into alarms( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(now(), #{MEMBER_ID}, #{ALARMTYPE_ID});
+insert into ALARMS( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(now(), '16', '1');
+select * from alarms where member_id='16';  
+select * from alarms where member_id='17'; 
+select * from alarms where member_id='15'; 
+select *from drivings        
+        
 -- ALARMS Table Create SQL
 CREATE TABLE ALARMS
 (
@@ -124,7 +136,7 @@ CREATE TABLE ALARMS
     `HABIT_ID`        INT             NULL        COMMENT '습관아이디', 
      PRIMARY KEY (ALARM_ID)
 );
-
+select * from ALARMS
 ALTER TABLE ALARMS COMMENT '알람정보';
 
 ALTER TABLE ALARMS
@@ -188,6 +200,8 @@ insert into DRIVINGS (DRIVING_STARTTIME, MEMBER_ID) values(now(),'u1');
 UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and MEMBER_ID='u1';
 
 select*from MEMBERS;   
+select * from drivings where member_id='16';
+select * from alarms where member_id='16';
 
 
 --rest 실험
@@ -234,7 +248,9 @@ select*from RESTS;
 
 select * from drivings; 
 insert into drivings(driving_starttime,member_id) values(now(),'11');
- select * from drivings where member_id= '1234'
+
+
+select * from drivings where member_id= '1234'
  
 select * from drivings;
 
