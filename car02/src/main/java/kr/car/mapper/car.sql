@@ -287,9 +287,11 @@ select
       count(case when ALARMTYPE_ID='4' then 4 end ) as '휴게알람'
       from Alarms;
 
-      
-      
-
+select*from alarmtypes      
+insert into alarmtype values('1','졸음1회알람');
+insert into alarmtype values('2','졸음2회알람');
+insert into alarmtype values('3','졸음3회알람');    
+insert into alarmtype values('4','휴식알람');    
 select driving_starttime, driving_endtime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d')
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d %h:%m:%s');
 select driving_starttime from drivings where DATE_FORMAT(driving_starttime,'%Y-%m-%d');

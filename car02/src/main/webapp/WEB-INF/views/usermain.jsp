@@ -27,6 +27,9 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">   
 
+<%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
+String id = vo.getMember_id();%>
+
    //================================
    var audio1 = new Audio("${pageContext.request.contextPath}/resources/Music/AnneMarie-2002.mp3");
    var audio2 = new Audio("${pageContext.request.contextPath}/resources/Music/Billie Eilish - bad guy.mp3");
@@ -50,9 +53,6 @@
    //===================================
        
    
-   
-<%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
-String id = vo.getMember_id();%>
 
    
    function driveS() {

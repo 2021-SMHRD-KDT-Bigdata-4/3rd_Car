@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.car.domain.AlarmCountVO;
 import kr.car.domain.AlarmsVO;
+import kr.car.domain.BoardVO;
 import kr.car.domain.DrivingVO;
 import kr.car.domain.MembersVO;
 import kr.car.domain.RestsVO;
+
 
 //POJO
 @Controller
@@ -108,29 +110,18 @@ public class PageController {
       return "usermain";
    }
    
+   //운전확인 리스트 뽑아오기
+   
+
 
    //알람타입별 통계
-//   @RequestMapping("/alarmtype_statistics.do")
-//   public @ResponseBody AlarmCountVO alarmcount(AlarmsVO vo, Model model) {
-//     AlarmCountVO dataa = cMapper.alarmcount(vo);
-//     dataa.setStartDate(String.valueOf(vo.getAlarm_time()));
-//     dataa.setEndDate(String.valueOf(vo.getAlarm_time()));
-//     System.out.println(dataa);
-//      return dataa;
-//   }
-   
    @RequestMapping("/alarmtype_statistics.do")
    public @ResponseBody List<AlarmCountVO> alarmcount(AlarmsVO vo, Model model) {
-	   System.out.println(vo.toString());
-      List<AlarmCountVO> dataa = cMapper.alarmcount(vo);
-//      for (int i = 0; i < dataa.size(); i++) {
-//         dataa.get(i).setStartDate(String.valueOf(vo.getAlarm_time()));
-//         dataa.get(i).setEndDate(String.valueOf(vo.getAlarm_time()));
-//      }
-     System.out.println(dataa);
+     System.out.println(vo.toString());
+      List<AlarmCountVO> dataa = cMapper.alarmcounts(vo);
+      System.out.println(dataa);
       return dataa;
    }
-
  
    
    @RequestMapping("/main.do")
@@ -175,7 +166,21 @@ public class PageController {
    public void notice() {
 
    }
+   
+   @RequestMapping("/rest_mn.do")
+   public void rest_mn() {
 
+   }
+ 
+   @RequestMapping("/user_mn.do")
+   public void user_mn() {
+
+   }
+   
+   @RequestMapping("/sleep_mn.do")
+   public void sleep_mn() {
+
+   }
  
    
    

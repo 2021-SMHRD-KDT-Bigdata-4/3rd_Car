@@ -9,8 +9,10 @@
 	</select>
 	
    <select id="drivingList" resultType="DrivingVO">
-    select driving_starttime, driving_endtime from drivings, members where drivings.member_id=members.member_id and members.member_id='1234'
-    
+   
+    select DRIVING_ID, driving_starttime, driving_endtime from drivings,members 
+    where DATE_FORMAT(driving_starttime,'%Y-%m-%d') =  DATE_FORMAT(now(),'%Y-%m-%d') 
+    and drivings.member_id=members.member_id and members.member_id=#{member_id}
     
     </select>
     
@@ -38,13 +40,13 @@
 	 UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and MEMBER_ID=#{member_id};
 	</update>
 	
-    <select id="alarmcount"  parameterType="AlarmsVO" resultType="kr.car.domain.AlarmCountVO">
+<select id="alarmcounts"  parameterType="kr.car.domain.AlarmsVO" resultType="kr.car.domain.AlarmCountVO">
        
       select
-      count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID=#{member_id} then 1 end ) as 'sleep_1time',
-      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID=#{member_id} then 2 end ) as 'sleep_2times',
-      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID=#{member_id} then 3 end ) as 'sleep_3times',
-      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID=#{member_id} then 4 end ) as 'rest_alarm'
+      count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID=#{member_id} then 1 end ) as sleep_1time,
+      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID=#{member_id} then 2 end ) as sleep_2times,
+      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID=#{member_id} then 3 end ) as sleep_3times,
+      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID=#{member_id} then 4 end ) as rest_alarm
       from Alarms;
            
     </select>

@@ -62,14 +62,14 @@ function logoutFn(){
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="아이디" id=member_id name="member_id">                  
+                  <input type="text" class="form-control" placeholder="아이디" id=member_id name=member_id>                  
                </div>
                
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="비밀번호" id=password name="password">
+                  <input type="password" class="form-control" placeholder="비밀번호" id=password name=password>
                </div>
                <div class="form-group">
                   <input type="submit" value="로그인" class="btn btn-sm float-right login_btn" >
@@ -78,14 +78,15 @@ function logoutFn(){
          
          </div>
          <div class="card-footer">
-            
             <div class="d-flex justify-content-center links">
-               새 계정을 생성하시겠습니까?<a href="${cpath}/register.do">회원가입</a>
+               새 계정을 생성하시겠습니까?<a href="#">회원가입</a>
             </div>
-        
- 
+            <div class="d-flex justify-content-center">
+               <a href="#">비밀번호 찾기</a>
+            </div>
          </div>
       </div>
    </div>
+</div>
 </body>
 </html>

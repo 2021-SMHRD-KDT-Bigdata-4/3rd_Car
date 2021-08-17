@@ -1,3 +1,4 @@
+<%@page import="kr.car.domain.MembersVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -20,63 +21,61 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-function aaa(dataa) {
-    alert("여끼까지 오면 aa가 불러와진것");
+<%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
+String id = vo.getMember_id();%>
 
-    google.charts.load('current', {
-       packages : [ 'corechart', 'bar' ]
-    });
+function aaa(dataa){
+
+    google.charts.load('current', {packages : [ 'corechart' , 'bar' ]});
     google.charts.setOnLoadCallback(alarmcount);
-
-	
-function alarmcount() {
-    	  alert(typeof (dataa[0].sleep_1time));
-
-        var data = new google.visualization.arrayToDataTable([
-          ['확인필요', 'Percentage'],
+   
+   function alarmcount() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string','경고');
+        data.addColumn('number', '경고횟수');
+        data.addRows([
           ["졸음경고 1회", dataa[0].sleep_1time],
-          ["졸음경고 2회", dataa[1].sleep_2times],
-          ["졸음경고 3회", dataa[2].sleep_3times],
-          ["휴식알람", dataa[3].rest_alarm]]);
+          ["졸음경고 2회", dataa[0].sleep_2times],
+          ["졸음경고 3회", dataa[0].sleep_3times],
+          ["휴식알람", dataa[0].rest_alarm]
+        ]);
 
-        var options = {
-          width: 500,
-          legend: { position: 'none' },
-          chart: {title: '알림별 울림횟수'},
-          axes: {
-            x: {
-              0: { side: 'top', label: '알림'} // Top x-axis.
-            }
-          },
-          bar: { groupWidth: "80%" }
+        var options = {'title':'알림별 울림횟수',
+                hAxis:{
+                   title : '경고',
+                   viewWindow:{
+                      min : [7,30,0],
+                      max : [17,30,0]
+                   }
+                },
+                vAxis:{
+                   title : '경고횟수'
+                },
+                colors: ['#a52714', '#097138']
         };
 
-        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-        chart.draw(data, google.charts.Bar.convertOptions(options));
+        var chart = new google.visualization.ColumnChart(document.getElementById('top_x_div'));
+        chart.draw(data, options);
       }
-  	
+}
 
-  	function choosedate() {
-  		
-		var formData = $("#frm").serialize();
-		alert(formData)
-		$.ajax({ 
-			url : "${cpath}/alarmtype_statistics.do", 
-			type : "post", 
-			data : formData,
-			success : function(dataa) {
-				alert("데이터 확인");
-				callback(dataa)
-			}, 
-			dataType : "JSON",
-			error : function(request,status,error) {
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			} 
-		});
-		
-  	} 
-      
-      
+     function choosedate() {
+        $("#top_x_div").css("display", "block");
+        var member_id = '<%=id%>';
+      $.ajax({ 
+         url : "${cpath}/alarmtype_statistics.do", 
+         type : "post", 
+         data : {'member_id' : member_id},
+         dataType : "JSON",
+         success : function(dataa) {
+            alert(dataa);
+            aaa(dataa)
+         }, 
+         error : function(request,status,error) {
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+         } 
+      });
+     } 
 
 </script>
 </head>
@@ -125,6 +124,8 @@ function alarmcount() {
                <!-- 여기서부터 우리가 원하는 표 -->
                <div class="card">
                   <div class="card-content">
+              <button class="btn btn-warning btn-sm" onclick="goJson()">운전현황</button>
+              <div id="list"></div>
                      <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover"
                            id="dataTables-example">
@@ -134,8 +135,7 @@ function alarmcount() {
                                  <th>운전 번호</th>
                                  <th>운전 시작시간</th>
                                  <th>운전 종료 시간</th>
-                                 <th>운전시간</th>
-                                 <th>졸음 운전 알람 횟수</th>
+                                
                               </tr>
                            </thead>
 
@@ -145,14 +145,13 @@ function alarmcount() {
                                     <td>${vo.driving_id}</td>
                                     <td>${vo.driving_starttime}</td>
                                     <td>${vo.driving_endtime}</td>
-                                    <td>${vo.member_id}</td>
-                                    <td>비고</td>
                                  </tr>
                               </c:forEach>
                            </tbody>
 
                         </table>
                      </div>
+                 
                   </div>
                </div>
                <!--End Advanced Tables -->
@@ -161,12 +160,13 @@ function alarmcount() {
 
 
             <br /> <br /> <br /> <br />
-            	<p>제목</p>
-            	<form id="frm" name="frm" method="post">
-            	<button onclick="choosedate()">조회하기</button>
-            	</form>
+            
+            <p>제목</p>
+               <form id="frm" method="post" onsubmit="return false;">
+               <button type="submit" class="btn btn-default btn-lg" onclick="choosedate()">차트보기</button>
+               </form>
+             <div id="top_x_div" style="width: 800px; height: 600px; display: none"></div>
             	
-             <div id="top_x_div" style="width: 800px; height: 600px;"></div>
             <br /> <br /> <br /> <br />
 			
             <p>총 알람 횟수 : sum</p>
