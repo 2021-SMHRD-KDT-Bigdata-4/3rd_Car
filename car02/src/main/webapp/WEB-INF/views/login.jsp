@@ -132,17 +132,13 @@ function kakaoLogout() {
             <div class="d-flex justify-content-center links">
                새 계정을 생성하시겠습니까?<a href="#">회원가입</a>
             </div>
-<<<<<<< HEAD
-            <div class="d-flex justify-content-center">
-               <a href="#">비밀번호 찾기</a>
-            </div>
-=======
+
 
          </div>
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-4/3rd_Car.git
+
          </div>
       </div>
    </div>
-</div>
+
 </body>
 </html>
