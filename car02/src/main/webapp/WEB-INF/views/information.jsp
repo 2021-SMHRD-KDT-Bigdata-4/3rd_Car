@@ -30,7 +30,7 @@
                <a href="index.html" class="logo"><strong>당신의 안전을 책임지는
                      co-car</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp신근아님 환영합니다.</a>
                <ul class="icons">
-                  <li><a href="login.jsp">Login / Logout</a></li>
+                 <li><a href="${cpath}/logoutAjax.do"> Logout</a></li>
                </ul>
             </header>
 

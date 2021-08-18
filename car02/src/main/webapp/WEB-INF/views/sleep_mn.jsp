@@ -1,14 +1,11 @@
+<%@page import="kr.car.domain.MembersVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="cpath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 
-<!--
-   Editorial by HTML5 UP
-   html5up.net | @ajlkn
-   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head>
 <title>Car</title>
@@ -19,41 +16,54 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+
+<%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
+String id = vo.getMember_id();%>
     
     function aaa(dataa){
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart);
       
+      
+
       function drawChart() {
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('string','경고');
-      data.addColumn('number', '경고횟수');
-      data.addRows([
-    	  ["졸음경고 1회", dataa[0].sleep_1time],
-          ["졸음경고 2회", dataa[0].sleep_2times],
-          ["졸음경고 3회", dataa[0].sleep_3times],
-          ["휴식알람", dataa[0].rest_alarm]
-      ]);
+        var data = new google.visualization.DataTable();
+        data.addColumn('string','경고');
+        data.addColumn('number', '경고횟수');
+            data.addRows([
+          	  ["졸음경고 1회", dataa[0].sleep_1time],
+              ["졸음경고 2회", dataa[0].sleep_2times],
+              ["졸음경고 3회", dataa[0].sleep_3times],
+              ["휴식알람", dataa[0].rest_alarm]
+            ]);
 
-      var options = {
-        title: '알림별 울림횟수',
-        sliceVisibilityThreshold: .2
-      };
+            var options = {
+            		  width: 500,
+            		  height: 500,
+            		  title: '회원 알림 횟수 확인',
+            		  colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6']
+            		};
 
-      var chart = new google.visualization.PieChart(document.getElementById('top_x_div'));
-      chart.draw(data, options);
+            	
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    
+    
     }
+   
  
       
       function choosedate() {
-          $("#top_x_div").css("display", "block");
+          $("#piechart").css("display", "block");
+          var member_id = '<%=id%>';
 		$.ajax({
 			url : "${cpath}/alarmtype_statistics_admin.do",
 			type : "post",
-			dataType : "JSON",
+	        dataType : "JSON",
 			success : function(dataa) {
-				alert(dataa);
+				alert("회원 알림 횟수 확인");
 				aaa(dataa)
 			},
 			error : function(request, status, error) {
@@ -61,6 +71,7 @@
 						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
+      }
       
 </script>
 </head>
@@ -99,6 +110,8 @@
 				<div class="card">
 					<div class="card-content">
 						<!-- 여기서부터 우리가 원하는 표 -->
+						<div style="width:100%; height:500px; overflow:auto">
+
 						<div class="table-responsive">
 							<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
@@ -124,9 +137,14 @@
 							</table>
 						</div>
 					</div>
+					</div>
 				</div>
 
 				<!-- 표 끝 -->
+				<form id="frm" method="post" onsubmit="return false;">
+               <button type="submit" class="btn btn-default btn-lg" onclick="choosedate()">차트보기</button>
+               </form>
+				 <div id="piechart" style="width: 900px; height: 500px;"></div>
 
 			</div>
 		</div>

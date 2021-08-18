@@ -10,7 +10,7 @@
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sleep"/>
+	    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sleep?useUnicode=true"/>
 		<property name="username" value="root"/>
 		<property name="password" value="12345"/>
 	</bean>
@@ -23,6 +23,7 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource"/>	
 	    <property name="configLocation" value="/WEB-INF/mybatis/mybatis-config.xml"/>    
+
 	</bean>
 	
 	<!-- mapper interface를 Spring Container에 로딩하고, Mapper.XML과 내부적으로 연결시키는 동작(Scan)  중요해 이부분!!!!!-->

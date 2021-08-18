@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import kr.car.domain.DrivingVO;
 import kr.car.domain.MembersVO;
 import kr.car.domain.RestsVO;
+import kr.car.domain.SearchVO;
 import kr.car.domain.AlarmCountVO;
 import kr.car.domain.AlarmsVO;
 import kr.car.domain.BoardVO;
@@ -27,14 +28,13 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 	//관리자 로그인
 	public MembersVO adminloginFunction(MembersVO vo);
 	
-	//운전시작.종료
+	//운전시작.
     public int dstart(String member_id);
     public int after2(String member_id);
     //setInterval
     public int alarmdata(AlarmsVO vo);
 
-    
-    
+   //운전종료
 	public int dend(DrivingVO vo);
 
 	//휴식시작.종료
@@ -73,6 +73,8 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 
     public void memberInsert(MembersVO vo);
 
+    //운전자조회
+    public List<MembersVO> boardSearch(SearchVO vo);
 	
 
 	

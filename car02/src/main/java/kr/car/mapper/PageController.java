@@ -18,6 +18,7 @@ import kr.car.domain.BoardVO;
 import kr.car.domain.DrivingVO;
 import kr.car.domain.MembersVO;
 import kr.car.domain.RestsVO;
+import kr.car.domain.SearchVO;
 
 //POJO
 @Controller
@@ -43,7 +44,7 @@ public class PageController {
       
       System.out.println("로그인확인");
       
-      return "redirect:/main.do";
+      return "redirect:/admin.do";
    }
 
    // 유저 로그인
@@ -185,7 +186,7 @@ public class PageController {
    @RequestMapping("/alarmtype_statistics_admin.do")
       public @ResponseBody List<AlarmCountVO> alarmcount_admin(AlarmsVO vo, Model model) {
          System.out.println(vo.toString());
-         List<AlarmCountVO> dataa =cMapper.alarm_counts(vo);
+         List<AlarmCountVO> dataa =cMapper.alarm_counts_admin(vo);
          System.out.println(dataa);
          return dataa;
       }
@@ -266,6 +267,13 @@ public class PageController {
       model.addAttribute("vo", vo);
       // return "boardContent";
 
+   }
+   
+   @RequestMapping("/boardSearch.do")
+   public String boardSearch(SearchVO vo, Model model) {
+      List<MembersVO> list = cMapper.boardSearch(vo);
+      model.addAttribute("list", list);
+      return "user_mn";
    }
 
 }

@@ -69,7 +69,7 @@ function aaa(dataa){
          data : {'member_id' : member_id},
          dataType : "JSON",
          success : function(dataa) {
-            alert(dataa);
+            alert("졸음운전 확인하기");
             aaa(dataa)
          }, 
          error : function(request,status,error) {
@@ -101,16 +101,6 @@ function aaa(dataa){
             <!-- Banner -->
 
             <br />
-            <div class="content">
-               <a href="useralarm.do?member_id=${MembersVO.member_id}" class="button big">알림별 통계</a>&nbsp&nbsp&nbsp
-               <a href="#" class="button big">시간대별 알람 통계</a>
-            </div>
-
-            
-            <div>
-               <a href="#" class="button big">일자별 졸음 알람(월간)</a>&nbsp&nbsp&nbsp
-               <a href="#" class="button big">시간별 졸음 알람(월간)</a>
-            </div>
 
             <br /> <br /> <br />
 
@@ -124,7 +114,7 @@ function aaa(dataa){
                <!-- 여기서부터 우리가 원하는 표 -->
                <div class="card">
                   <div class="card-content">
-              
+             		 <div style="width:100%; height:350px; overflow:auto">
                      <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover"
                            id="dataTables-example">
@@ -153,6 +143,7 @@ function aaa(dataa){
                      </div>
                  
                   </div>
+                  </div>
                </div>
                <!--End Advanced Tables -->
                <br />
@@ -166,7 +157,8 @@ function aaa(dataa){
                <!-- 여기서부터 우리가 원하는 표 -->
                <div class="card">
                   <div class="card-content">
-              
+              		<div style="width:100%; height:350px; overflow:auto">
+
                      <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover"
                            id="dataTables-example">
@@ -195,6 +187,7 @@ function aaa(dataa){
                      </div>
                  
                   </div>
+                  </div>
                </div>
  
                <form id="frm" method="post" onsubmit="return false;">
@@ -214,6 +207,8 @@ function aaa(dataa){
                <div class="card">
 
                   <div class="card-content">
+                  	<div style="width:100%; height:200px; overflow:auto">
+
                      <!-- 여기서부터 우리가 원하는 표 -->
                      <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover"
@@ -239,15 +234,9 @@ function aaa(dataa){
                                  </tr>
                               </c:forEach>
                            </tbody>
-
-
-
                         </table>
-
-                        <br /> <br /> <br /> <br />
                      </div>
-                     <!-- 여기까지가 표다!! -->
-
+                  </div>
                   </div>
                </div>
                <!--End Advanced Tables -->

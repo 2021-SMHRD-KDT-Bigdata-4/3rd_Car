@@ -55,7 +55,7 @@
                         <header id="header">
                            <a href="index.html" class="logo"><strong>당신의 안전을 책임지는</strong> co-car</a>
                            <ul class="icons">
-                              <li><a href="login.jsp">Login / Logout</a></li>
+                               <li><a href="${cpath}/logoutAjax.do"> Logout</a></li>
                            </ul>
                         </header>
 

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 
 
-<html>
+<html lang="en">
    <head>
       <title>Car</title>
       <meta charset="utf-8" />
@@ -44,12 +44,28 @@
                               <h2>회원 관리</h2>
                            </header>
                            
-                           <!-- Search -->
-                        <section id="search" class="alt">
-                           <form method="post" action="#">
-                              <input type="text" name="query" id="query" placeholder="Search" />
-                           </form>
+                     <!-- Search -->
+                      <form action = "${cpath}/boardSearch.do" method="post"> 
+                       
+                   
+                           <table class = "table">
+                           
+                            <tr>
+                            <td>
+                         <section id="search" class="alt">
+                          <select name = "part" class = "form-control">
+                                 <option value="member_id">회원아이디</option>
+                           <option value="member_name">회원명</option>
+                           <option value="company">소속회사</option>
+                             </select>
                         </section>
+                        </td>
+                              <td><input type="text" name="keyword" class = "form-control" placeholder="Search" /></td>
+                              <td><button type = "submit" class = "btn">검색</button></td>
+                              </tr>
+                            </table>
+                     
+                  
                            
                            <!-- 표 -->
                            
@@ -57,14 +73,16 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>회원명</th>
                                             <th>회원아이디</th>
+                                            <th>회원명</th>
                                             <th>소속회사</th>
                                             <th>나이</th>
                                             <th>성별</th>
                                         </tr>
                                     </thead>
+                        
                                         <tbody>
+                             
                               <c:forEach var="vo" items="${list}">
                                  <tr>
                                     <td>${vo.member_id}</td>
@@ -73,14 +91,18 @@
                                     <td>${vo.age}</td>
                                     <td>${vo.gender}</td>
                                  </tr>
+                                
                               </c:forEach>
+                               
                            </tbody>
+                          
                                 </table>
                             </div>
                             
-                
                
-               
+                  
+                             </form>
+                 
 
                   </div>
                </div>

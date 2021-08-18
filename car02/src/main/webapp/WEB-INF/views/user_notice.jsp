@@ -126,7 +126,7 @@
                               <h2>메뉴</h2>
                            </header>
                            <ul>
-                              <li><a href="${cpath}/admin.do">메인</a></li>
+                              <li><a href="${cpath}/usermain.do">메인</a></li>
                               <li><a href="${cpath}/useralarm.do">알람</a></li>
                               <li><a href="${cpath}/information.do">정보</a></li>
                               

@@ -134,6 +134,10 @@
 	<select id="member_List" resultType="MembersVO">
 		select * from members
 	</select>
+	
+	   <select id="boardSearch" resultType = "MembersVO" parameterType="kr.car.domain.SearchVO">
+        select * from members where ${part} like concat('%',#{keyword},'%')
+    </select>   
 
 
 
