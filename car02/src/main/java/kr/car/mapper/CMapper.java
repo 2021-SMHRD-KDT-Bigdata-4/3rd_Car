@@ -52,16 +52,23 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
     public List<AlarmsVO> adminalarmsList(String member_id);
     
     //차트만들기
-    public List<AlarmCountVO> alarmcounts(AlarmsVO vo);
+    public List<AlarmCountVO> alarm_counts(AlarmsVO vo);
+    public List<AlarmCountVO> alarm_counts_admin(AlarmsVO vo);
     
+    //회원조회
+    public List<MembersVO> member_List();
     
+    //회원운전기록조회
+    public List<DrivingVO> addrivingList();
     
     //게시판
     public List<BoardVO> boardList();  
     public void boardInsert(BoardVO vo); //insert SQL~   
     @Select("select * from BOARD where idx=#{idx}")
     public BoardVO boardContent(int idx); // select SQL~
-       
+    
+    public BoardVO user_boardContent(int idx);
+    
     public void boardDelete(int idx);
 
     public void memberInsert(MembersVO vo);

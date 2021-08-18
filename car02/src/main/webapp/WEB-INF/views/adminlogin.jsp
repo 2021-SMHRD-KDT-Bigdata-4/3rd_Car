@@ -12,17 +12,6 @@
 <script type="text/javascript">
 
 
-function logoutFn(){
-   $.ajax({
-      url:"ajaxlogout.do",
-      type:"get",
-      success:function(){
-          location.href="ajax04.jsp";
-      },
-       error:function(){ alert("error"); }
-      
-   });
-}
 </script>
 <!------ Include the above in your HEAD tag ---------->
 

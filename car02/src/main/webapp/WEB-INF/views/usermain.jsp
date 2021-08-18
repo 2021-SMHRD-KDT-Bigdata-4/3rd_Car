@@ -27,17 +27,16 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">   
 
-
 <%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
 String id = vo.getMember_id();%>
 
 	
 
    //================================
-   var audio1 = new Audio("${pageContext.request.contextPath}/resources/Music/Anne Marie - 2002.mp3");
-   var audio2 = new Audio("${pageContext.request.contextPath}/resources/Music/CHUNG HA - 벌써 12시.mp3");
-   var audio3 = new Audio("${pageContext.request.contextPath}/resources/Music/Itzy - Dalla Dalla.mp3");
-   var audio4 = new Audio("${pageContext.request.contextPath}/resources/Music/TWICE - FANCY.mp3");
+   var audio1 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm01.mp3");
+   var audio2 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm02.mp3");
+   var audio3 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm03.mp3");
+   var audio4 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm04.mp3");
    /* audio1은 그냥 재생됨. 졸음알람1*/
   
    /* audio2는 그냥 재생됨. 졸음알람2*/   
@@ -56,9 +55,6 @@ String id = vo.getMember_id();%>
    //===================================
        
    var timer;
-
-
-   
 
    function driveS() {
       setTimeout(function() {
@@ -148,10 +144,7 @@ String id = vo.getMember_id();%>
         $.ajax({
                type : "get",
                url: "${cpath}/rstart.do",
-                data : {"member_id" : member_id},
-               success : function(data) {
-               alert("휴식이 중요하죠~!");
-            },
+               data : {"member_id" : member_id},
                error:function(){
                   alert("휴식시작실패");
                }
@@ -164,9 +157,6 @@ String id = vo.getMember_id();%>
          url : "${cpath}/rend.do",
          data : {
             "member_id" : member_id
-         },
-         success : function(data) {
-            alert("휴식끝~!");
          },
          error : function(request, status, error) {
             alert("code:" + request.status + "\n" + "message:"
@@ -240,9 +230,9 @@ String id = vo.getMember_id();%>
          <div class="inner">
 
             <!-- Search -->
-            <section id="search" class="alt">
-               <form method="post" action="#">
-                  <input type="text" name="query" id="query" placeholder="Search" />
+            <section id="search1" class="alt">
+               <form >
+                 
                </form>
             </section>
 
@@ -253,13 +243,14 @@ String id = vo.getMember_id();%>
                </header>
                <ul>
                   <li><a href="usermain.do">메인</a></li>
-                  <li><a href="useralarm.do?member_id=${MembersVO.member_id}">일자별 졸음 알람(일간)</a></li>
-                  <li><a href="useralarm2.do">시간별 졸음 알람(일간)</a></li>
-                  <li><a href="useralarm3.do">일자별 졸음 알람(월간)</a></li>
-                  <li><a href="useralarm4.do">시간별 졸음 알람(월간)</a></li>
-                    
+
+                  
+                  
+                   <li><a href="useralarm.do?member_id=${MembersVO.member_id}">알람</a></li>
+  
+
                   <li><a href="information.do">정보</a></li>
-                  <li><a href="notice.do">공지사항</a></li>
+                  <li><a href="user_notice.do">공지사항</a></li>
                </ul>
             </nav>
 
