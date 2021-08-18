@@ -21,6 +21,7 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+
 <%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
 String id = vo.getMember_id();%>
 
@@ -169,9 +170,7 @@ function aaa(dataa){
             	
             <br /> <br /> <br /> <br />
 			
-            <p>총 알람 횟수 : sum</p>
-            <p>평균알람 횟수 : sum/7</p>
-
+ 
             <!-- section2 -->
             <!-- 두 번째 표 구역 -->
             <section>

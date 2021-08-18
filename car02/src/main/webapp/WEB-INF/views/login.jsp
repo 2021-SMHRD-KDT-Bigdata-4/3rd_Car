@@ -87,12 +87,6 @@ function logoutFn(){
                새 계정을 생성하시겠습니까?<a href="#">회원가입</a>
             </div>
 
-<<<<<<< HEAD
-=======
-
-         </div>
-
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-4/3rd_Car.git
          </div>
       </div>
    </div>

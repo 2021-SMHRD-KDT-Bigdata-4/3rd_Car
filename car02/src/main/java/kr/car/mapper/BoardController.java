@@ -82,11 +82,7 @@ public class BoardController {   // new BoardController(); -> Spring Container(D
 
    }
    
-   @RequestMapping("/sleep_mn.do")
-   public void sleep_mn() {
-
-   }
-   
+ 
 
    
 

@@ -27,17 +27,16 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">   
 
-
 <%MembersVO vo = (MembersVO) session.getAttribute("MembersVO");
 String id = vo.getMember_id();%>
 
 	
 
    //================================
-   var audio1 = new Audio("${pageContext.request.contextPath}/resources/Music/Anne Marie - 2002.mp3");
-   var audio2 = new Audio("${pageContext.request.contextPath}/resources/Music/CHUNG HA - 벌써 12시.mp3");
-   var audio3 = new Audio("${pageContext.request.contextPath}/resources/Music/Itzy - Dalla Dalla.mp3");
-   var audio4 = new Audio("${pageContext.request.contextPath}/resources/Music/TWICE - FANCY.mp3");
+   var audio1 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm01.mp3");
+   var audio2 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm02.mp3");
+   var audio3 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm03.mp3");
+   var audio4 = new Audio("${pageContext.request.contextPath}/resources/Music/alarm04.mp3");
    /* audio1은 그냥 재생됨. 졸음알람1*/
   
    /* audio2는 그냥 재생됨. 졸음알람2*/   
@@ -254,7 +253,7 @@ String id = vo.getMember_id();%>
                   <li><a href="usermain.do">메인</a></li>
                   
                   
-                   <li><a href="information.do">알람</a></li>
+                   <li><a href="useralarm.do">알람</a></li>
   
                   <li><a href="information.do">정보</a></li>
                   <li><a href="user_notice.do">공지사항</a></li>

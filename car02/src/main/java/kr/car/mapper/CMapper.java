@@ -46,10 +46,13 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
     public List<RestsVO> restsList(String member_id);
     
     //차트만들기
-    public List<AlarmCountVO> alarmcounts(AlarmsVO vo);
+    public List<AlarmCountVO> alarm_counts(AlarmsVO vo);
+    public List<AlarmCountVO> alarm_counts_admin(AlarmsVO vo);
     
     //회원조회
     public List<MembersVO> member_List();
+    
+    //회원운전기록조회
     public List<DrivingVO> addrivingList();
     
     //게시판

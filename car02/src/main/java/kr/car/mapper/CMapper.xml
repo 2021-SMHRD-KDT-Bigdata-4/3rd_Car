@@ -3,83 +3,114 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.car.mapper.CMapper">
-    
-    <select id="loginFunction"  resultType="kr.car.domain.MembersVO">
-    select * from members where member_id= #{member_id} and password = #{password}
-   </select>
-   
-   <select id="drivingList" resultType="DrivingVO">
-    select driving_starttime, driving_endtime from drivings, members where drivings.member_id=members.member_id and members.member_id='1234'
-    
-    
-    </select>
-    
-    <select id="restsList" resultType="restsVO">
-        select * from rests
-    </select>
-    
-    <insert id="dstart" parameterType="DrivingVO">
-      insert into drivings(driving_starttime,member_id) values(now(),#{member_id});
-    </insert>
-    
-     <insert id="after2" parameterType="AlarmsVO">
-      insert into alarms( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(  DATE_ADD(NOW(), INTERVAL 3 SECOND), #{MEMBER_ID}, '4');
-     </insert>
-     
-    
-    <update id="dend" parameterType="DrivingVO">
-    UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null and member_id=#{member_id};
-   </update>
-   
-     <insert id="rest_start" parameterType="RestsVO">
-      insert into RESTS(REST_STARTTIME,  MEMBER_ID) values(now(),#{member_id});
-    </insert>
-    
-    <update id="rest_end" parameterType="RestsVO">
-    UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and MEMBER_ID=#{member_id};
-   </update>
-   
-    <select id="alarm_count"  parameterType="AlarmsVO" resultType="kr.car.domain.AlarmCountVO">
-      select
-      count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID=#{member_id} then 1 end) as 'sleep_1times',
-      count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID=#{member_id} then 2 end) as 'sleep_2times',
-      count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID=#{member_id} then 3 end) as 'sleep_3times',
-      count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID=#{member_id} then 4 end) as 'rest_alarm'
-      from Alarms        
-    </select>
-    
-    <select id = "boardList" resultType="boardVO">
-         select idx,title,contents,writer,Date_FORMAT(indate,'%Y-%m-%d') AS indate from BOARD;
-    </select>    
-    
-    <select id = "boardList2" resultType="boardVO">
-         select idx,title,contents,writer,Date_FORMAT(indate,'%Y-%m-%d') AS indate from BOARD;
-    </select> 
-    
- 	<insert id="boardInsert" parameterType="boardVO">
-        insert into BOARD(title,contents,writer) 
-        values(#{title},#{contents},#{writer})
-    </insert>
-    
- 	<delete id="boardDelete" parameterType="int">
- 	    delete from BOARD where idx=#{idx}
-	</delete>
+
+	<select id="loginFunction" resultType="kr.car.domain.MembersVO">
+		select * from members where member_id= #{member_id} and password =
+		#{password}
+	</select>
+
+	<select id="drivingList" resultType="DrivingVO">
+		select driving_starttime, driving_endtime from drivings, members where
+		drivings.member_id=members.member_id and members.member_id='1234'
+
+
+	</select>
 	
- 	<insert id="memberInsert" parameterType="MembersVO">
-        insert into members(member_id,password,member_name,gender,company,age) 
-        values(#{member_id},#{password},#{member_name},#{gender},#{company},#{age})
-    </insert>
+		<select id="addrivingList" resultType="DrivingVO">
+		select*from drivings
 
-<<<<<<< HEAD
-    <select id="member_List" resultType="MembersVO">
-        select * from members
-    </select>
-=======
 
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-4/3rd_Car.git
-    
-   
-    
+	</select>
 
-    
+	<select id="restsList" resultType="restsVO">
+		select * from rests
+	</select>
+
+	<insert id="dstart" parameterType="DrivingVO">
+		insert into drivings(driving_starttime,member_id)
+		values(now(),#{member_id});
+	</insert>
+
+	<insert id="after2" parameterType="AlarmsVO">
+		insert into alarms( ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(
+		DATE_ADD(NOW(), INTERVAL 3 SECOND), #{MEMBER_ID}, '4');
+	</insert>
+
+
+	<update id="dend" parameterType="DrivingVO">
+		UPDATE DRIVINGS SET DRIVING_ENDTIME = now() WHERE DRIVING_ENDTIME is null
+		and member_id=#{member_id};
+	</update>
+
+	<insert id="rest_start" parameterType="RestsVO">
+		insert into RESTS(REST_STARTTIME, MEMBER_ID) values(now(),#{member_id});
+	</insert>
+
+	<update id="rest_end" parameterType="RestsVO">
+		UPDATE RESTS SET REST_ENDTIME = now() WHERE REST_ENDTIME is null and
+		MEMBER_ID=#{member_id};
+	</update>
+
+	<select id="alarm_counts" parameterType="kr.car.domain.AlarmsVO"
+		resultType="kr.car.domain.AlarmCountVO">
+
+		select
+		count(case when ALARMTYPE_ID='1' then 1 end and case when MEMBER_ID=#{member_id}
+		then 1 end ) as sleep_1time,
+		count(case when ALARMTYPE_ID='2' then 2 end and case when MEMBER_ID=#{member_id}
+		then 2 end ) as sleep_2times,
+		count(case when ALARMTYPE_ID='3' then 3 end and case when MEMBER_ID=#{member_id}
+		then 3 end ) as sleep_3times,
+		count(case when ALARMTYPE_ID='4' then 4 end and case when MEMBER_ID=#{member_id}
+		then 4 end ) as rest_alarm
+		from Alarms;
+
+	</select>
+	
+	
+		<select id="alarm_counts_admin" parameterType="kr.car.domain.AlarmsVO"
+		resultType="kr.car.domain.AlarmCountVO">
+
+		select
+		count(case when ALARMTYPE_ID='1' then 1 end) as sleep_1time,
+		count(case when ALARMTYPE_ID='2' then 2 end) as sleep_2times,
+		count(case when ALARMTYPE_ID='3' then 3 end) as sleep_3times,
+		count(case when ALARMTYPE_ID='4' then 4 end) as rest_alarm
+		from Alarms;
+
+	</select>
+
+	<select id="boardList" resultType="boardVO">
+		select idx,title,contents,writer,Date_FORMAT(indate,'%Y-%m-%d') AS indate
+		from BOARD;
+	</select>
+
+	<select id="boardList2" resultType="boardVO">
+		select idx,title,contents,writer,Date_FORMAT(indate,'%Y-%m-%d') AS indate
+		from BOARD;
+	</select>
+
+	<insert id="boardInsert" parameterType="boardVO">
+		insert into BOARD(title,contents,writer)
+		values(#{title},#{contents},#{writer})
+	</insert>
+
+	<delete id="boardDelete" parameterType="int">
+		delete from BOARD where idx=#{idx}
+	</delete>
+
+	<insert id="memberInsert" parameterType="MembersVO">
+		insert into members(member_id,password,member_name,gender,company,age)
+		values(#{member_id},#{password},#{member_name},#{gender},#{company},#{age})
+	</insert>
+
+
+	<select id="member_List" resultType="MembersVO">
+		select * from members
+	</select>
+
+
+
+
+
 </mapper>
