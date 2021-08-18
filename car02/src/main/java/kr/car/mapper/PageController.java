@@ -247,7 +247,15 @@ public class PageController {
 	   model.addAttribute("list1", list1);
 	   return "sleep_mn";
    }
+   @RequestMapping("/user_mn.do")
+   public String user_mn(Model model) {
+      List<MembersVO> list = cMapper.member_List();
+      model.addAttribute("list", list);
+      return "user_mn";
 
+   }
+
+   
    @RequestMapping("/user_notice.do")
    public void user_notice() {
    }

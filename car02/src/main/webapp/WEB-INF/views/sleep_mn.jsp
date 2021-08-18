@@ -61,7 +61,7 @@
 						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
-      }
+      
 </script>
 </head>
 <body class="is-preload">
