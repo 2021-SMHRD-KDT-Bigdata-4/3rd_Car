@@ -135,9 +135,9 @@ public class PageController {
    // 휴식종료버튼
    @RequestMapping(value = "/rend.do", method = RequestMethod.GET)
    @ResponseBody
-   public int rest_end(DrivingVO vo) throws Exception {
+   public int rest_end(RestsVO vo) throws Exception {
       System.out.println(vo.getMember_id());
-      int cnt = cMapper.dend(vo);
+      int cnt = cMapper.rest_end(vo);
       return 1;
    }
 
