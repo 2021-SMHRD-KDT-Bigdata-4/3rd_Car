@@ -102,21 +102,13 @@
                               <h2>메뉴</h2>
                            </header>
                            <ul>
-<<<<<<< HEAD
+
                               <li><a href="admin.do">메인</a></li>
                               <li><a href="user_mn.do">회원관리</a></li>
                               <li><a href="sleep_mn.do">졸음운전 관리</a></li>
                               <li><a href="rest_mn.do">휴식시간 관리</a></li>
                               <li><a href="notice.do">공지사항</a></li>
-=======
-                              <li><a href="${cpath}/admin.do">메인</a></li>
-                              <li><a href="${cpath}/user_mn.do">회원관리</a></li>
-                              <li><a href="${cpath}/sleep_mn.do">졸음운전 관리</a></li>
-                              <li><a href="${cpath}/rest_mn.do">휴식시간 관리</a></li>
-                              <li><a href="${cpath}/notice.do">공지사항</a></li>
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-4/3rd_Car.git
-                                    
-                              
+                            
                            </ul>
                         </nav>
 

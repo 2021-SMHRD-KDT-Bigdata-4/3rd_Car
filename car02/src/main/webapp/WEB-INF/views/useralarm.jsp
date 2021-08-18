@@ -102,15 +102,14 @@ function aaa(dataa){
 
             <br />
             <div class="content">
-               <a href="#" class="button big">알림별 통계</a>&nbsp&nbsp&nbsp
-               <a href="mypage.jsp" class="button big">시간대별 알람 통계</a>
+               <a href="useralarm.do?member_id=${MembersVO.member_id}" class="button big">알림별 통계</a>&nbsp&nbsp&nbsp
+               <a href="#" class="button big">시간대별 알람 통계</a>
             </div>
 
-            <br />
-
+            
             <div>
-               <a href="mypage.jsp" class="button big">일자별 졸음 알람(월간)</a>&nbsp&nbsp&nbsp
-               <a href="mypage.jsp" class="button big">시간별 졸음 알람(월간)</a>
+               <a href="#" class="button big">일자별 졸음 알람(월간)</a>&nbsp&nbsp&nbsp
+               <a href="#" class="button big">시간별 졸음 알람(월간)</a>
             </div>
 
             <br /> <br /> <br />
@@ -118,15 +117,14 @@ function aaa(dataa){
             <!-- Section -->
             <section>
                <header class="major">
-                  <h2>일자별 졸음 알람(주간)</h2>
+                  <h2>일간 운전 정보</h2>
                </header>
 
                <!-- Advanced Tables -->
                <!-- 여기서부터 우리가 원하는 표 -->
                <div class="card">
                   <div class="card-content">
-              <button class="btn btn-warning btn-sm" onclick="goJson()">운전현황</button>
-              <div id="list"></div>
+              
                      <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover"
                            id="dataTables-example">
@@ -136,16 +134,17 @@ function aaa(dataa){
                                  <th>운전 번호</th>
                                  <th>운전 시작시간</th>
                                  <th>운전 종료 시간</th>
-                                
+                                 <th>사용자 ID</th>
                               </tr>
                            </thead>
 
                            <tbody>
-                              <c:forEach var="vo" items="${list1}">
+                              <c:forEach var="vo" items="${list3}">
                                  <tr>
                                     <td>${vo.driving_id}</td>
                                     <td>${vo.driving_starttime}</td>
                                     <td>${vo.driving_endtime}</td>
+                                    <th>${vo.member_id}</th>
                                  </tr>
                               </c:forEach>
                            </tbody>
@@ -158,21 +157,54 @@ function aaa(dataa){
                <!--End Advanced Tables -->
                <br />
             </section>
+			
+			 <header class="major">
+                  <h2>졸음 운전 정보</h2>
+               </header>
 
+               <!-- Advanced Tables -->
+               <!-- 여기서부터 우리가 원하는 표 -->
+               <div class="card">
+                  <div class="card-content">
+              
+                     <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover"
+                           id="dataTables-example">
 
-            <br /> <br /> <br /> <br />
-            
-            <p>제목</p>
+                           <thead>
+                              <tr>
+                                 <th>알람 번호</th>
+                                 <th>알람 시간</th>
+                                 <th>알람 정보</th>
+                                 <th>사용자 ID</th>
+                              </tr>
+                           </thead>
+
+                           <tbody>
+                              <c:forEach var="vo" items="${list5}">
+                                 <tr>
+                                    <td>${vo.alarm_id}</td>
+                                    <td>${vo.alarm_time}</td>
+                                    <td>${vo.alarmtype_id}</td>
+                                    <th>${vo.member_id}</th>
+                                 </tr>
+                              </c:forEach>
+                           </tbody>
+
+                        </table>
+                     </div>
+                 
+                  </div>
+               </div>
+ 
                <form id="frm" method="post" onsubmit="return false;">
                <button type="submit" class="btn btn-default btn-lg" onclick="choosedate()">차트보기</button>
                </form>
              <div id="top_x_div" style="width: 800px; height: 600px; display: none"></div>
-            	
-            <br /> <br /> <br /> <br />
-			
- 
+
             <!-- section2 -->
             <!-- 두 번째 표 구역 -->
+
             <section>
                <header class="major">
                   <h2>휴식 현황</h2>
@@ -191,16 +223,17 @@ function aaa(dataa){
                                  <th>휴식 번호</th>
                                  <th>휴식 시작시간</th>
                                  <th>휴식 종료시간</th>
-                                 <th>휴식시간</th>
+                                 <th>사용자 ID</th>
                                  <th>비 고</th>
                               </tr>
                            </thead>
                            <tbody>
-                              <c:forEach var="vo" items="${list2}">
+                              <c:forEach var="vo" items="${list4}">
                                  <tr>
                                     <td>${vo.rest_id}</td>
                                     <td>${vo.rest_starttime}</a></td>
                                     <td>${vo.rest_endtime}</td>
+                                    <th>${vo.member_id}</th>
                                     <td>비고</td>
                                     <td>비고</td>
                                  </tr>
@@ -220,6 +253,7 @@ function aaa(dataa){
                <!--End Advanced Tables -->
 
             </section>
+           
          </div>
       </div>
 
@@ -242,10 +276,12 @@ function aaa(dataa){
                <ul>
                   <li><a href="${cpath}/usermain.do">메인</a></li>
 
+
                   <li><a href="${cpath}/useralarm.do">알람</a></li>
                     
                   <li><a href="${cpath}/information.do">정보</a></li>
 				  <li><a href="${cpath}/user_notice.do">공지사항</a></li>
+
                </ul>
             </nav>
 

@@ -4,27 +4,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.car.mapper.CMapper">
 
+
 	<select id="loginFunction" resultType="kr.car.domain.MembersVO">
-		select * from members where member_id= #{member_id} and password =
-		#{password}
-	</select>
+      select * from members where member_id= #{member_id} and password =
+      #{password}
+   </select>
 
-	<select id="drivingList" resultType="DrivingVO">
-		select driving_starttime, driving_endtime from drivings, members where
-		drivings.member_id=members.member_id and members.member_id='1234'
-
-
-	</select>
+	 <!-- 유저 운전 리스트 -->
+   <select id="drivingList" resultType="DrivingVO">
+    select * from drivings, members where drivings.member_id=members.member_id and members.member_id=#{member_id} order by driving_id desc 
+    </select>
 	
+   <!-- 이건 옛날거인가? -->
 		<select id="addrivingList" resultType="DrivingVO">
 		select*from drivings
-
-
 	</select>
 
-	<select id="restsList" resultType="restsVO">
-		select * from rests
-	</select>
+	  
+   <!-- 유저  휴식 리스트-->
+    <select id="restsList" resultType="RestsVO">
+        select * from rests where member_id=#{member_id} order by rest_id desc
+    </select>
+    
+    <!-- 유저  졸음운전 알람 리스트-->
+    <select id="alarmsList" resultType="AlarmsVO">
+        select * from alarms where member_id=#{member_id} order by alarm_id desc
+    </select>
+    
+    <!-- 관리자 -유저 운전리스트 -->
+    <select id="admindrivingList" resultType="DrivingVO">
+    select *from drivings order by driving_id desc
+    </select>
+    
+    <!-- 관리자 - 유저  휴식 리스트-->
+    <select id="adminrestsList" resultType="restsVO">
+        select * from rests order by rest_id desc
+    </select>
+    
+    <!-- 관리자 -유저 운전리스트 -->
+    <select id="adminalarmsList" resultType="AlarmsVO">
+    select *from alarms order by alarm_id desc
+    </select>
+    
+    <!-- 데이터 들어가아아아아아아아ㅏㅣㅏㅇ아갖다ㅣㄱ다ㅓ디ㅏㅓㅏㄹㄷㄷ -->
+     <insert id="alarmdata" parameterType="AlarmsVO">
+      insert into alarms(ALARM_TIME,MEMBER_ID,ALARMTYPE_ID) values(now(), #{member_id}, #{alarmtype_id});
+     </insert>
+    
 
 	<insert id="dstart" parameterType="DrivingVO">
 		insert into drivings(driving_starttime,member_id)
@@ -108,8 +134,6 @@
 	<select id="member_List" resultType="MembersVO">
 		select * from members
 	</select>
-
-
 
 
 

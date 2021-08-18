@@ -54,10 +54,7 @@ String id = vo.getMember_id();%>
    
    //===================================
        
-   
-
-
-   
+   var timer;
 
    function driveS() {
       setTimeout(function() {
@@ -75,7 +72,7 @@ String id = vo.getMember_id();%>
              });
         $("#realtime-video").show();
         
-        setInterval(function(){
+        timer = setInterval(function(){
             var member_id = '<%=id%>';
             var memberdata = {"member_id" : member_id};
               $.ajax({
@@ -139,6 +136,7 @@ String id = vo.getMember_id();%>
                    }
                   });
            $("#realtime-video").hide();
+           clearinterval(timer);
           } 
    
    function restStart() {
@@ -146,10 +144,7 @@ String id = vo.getMember_id();%>
         $.ajax({
                type : "get",
                url: "${cpath}/rstart.do",
-                data : {"member_id" : member_id},
-               success : function(data) {
-               alert("휴식이 중요하죠~!");
-            },
+               data : {"member_id" : member_id},
                error:function(){
                   alert("휴식시작실패");
                }
@@ -162,9 +157,6 @@ String id = vo.getMember_id();%>
          url : "${cpath}/rend.do",
          data : {
             "member_id" : member_id
-         },
-         success : function(data) {
-            alert("휴식끝~!");
          },
          error : function(request, status, error) {
             alert("code:" + request.status + "\n" + "message:"
@@ -251,10 +243,12 @@ String id = vo.getMember_id();%>
                </header>
                <ul>
                   <li><a href="usermain.do">메인</a></li>
+
                   
                   
-                   <li><a href="useralarm.do">알람</a></li>
+                   <li><a href="useralarm.do?member_id=${MembersVO.member_id}">알람</a></li>
   
+
                   <li><a href="information.do">정보</a></li>
                   <li><a href="user_notice.do">공지사항</a></li>
                </ul>

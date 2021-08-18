@@ -61,7 +61,7 @@
 						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
-      }
+      
 </script>
 </head>
 <body class="is-preload">
@@ -69,9 +69,13 @@
 	<!-- Wrapper -->
 	<div id="wrapper">
 
+
+
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
+
+
 
 				<!-- Header -->
 				<header id="header">
@@ -87,54 +91,43 @@
 
 				<br /> <br /> <br />
 
-				<!-- Section -->
-
 				<header class="major">
 					<h2>졸음운전 관리</h2>
 				</header>
 
-				<!-- Search -->
-				<section id="search" class="alt">
-					<form method="post" action="#">
-						<input type="text" name="query" id="query" placeholder="Search" />
-					</form>
-				</section>
-				<div class="table-responsive">
-					<h2>회원 운전현황</h2>
-					<table class="table table-striped table-bordered table-hover"
-						id="dataTables-example">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>운전시작</th>
-								<th>운전종료</th>
-								<th>회원아이디</th>
-								<th>비고</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="vo" items="${list}">
-								<tr>
-									<td>${vo.driving_id}</td>
-									<td>${vo.driving_starttime}</td>
-									<td>${vo.driving_endtime}</td>
-									<td>${vo.member_id}</td>
-									<td></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+				<!-- 표 -->
+				<div class="card">
+					<div class="card-content">
+						<!-- 여기서부터 우리가 원하는 표 -->
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover"
+								id="dataTables-example">
+								<thead>
+									<tr>
+										<th>졸음운전 알람 번호</th>
+										<th>졸음운전 알람 시간</th>
+										<th>알람 종류</th>
+										<th>사용자 ID</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="vo" items="${list1}">
+										<tr>
+											<td>${vo.alarm_id}</td>
+											<td>${vo.alarm_time}</a></td>
+											<td>${vo.alarmtype_id}</td>
+											<th>${vo.member_id}</th>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 
-				<!-- 표 -->
+				<!-- 표 끝 -->
 
-
-
-
-
-		 <div id="top_x_div" style="width: 800px; height: 600px; display: none"></div>
-
-			
 			</div>
 		</div>
 
