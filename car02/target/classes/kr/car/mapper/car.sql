@@ -125,7 +125,9 @@ select * from alarms where member_id='17';
 select * from alarms where member_id='15';
 select * from alarms where member_id='aa';
 
-select *from drivings        
+select *from drivings
+
+ select driving_starttime, driving_endtime from drivings, members where drivings.member_id=members.member_id and members.member_id='11'
         
 -- ALARMS Table Create SQL
 CREATE TABLE ALARMS

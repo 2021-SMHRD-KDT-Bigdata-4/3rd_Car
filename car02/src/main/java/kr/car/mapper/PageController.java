@@ -143,13 +143,50 @@ public class PageController {
    //유저
    @RequestMapping("/useralarm.do")
    public String useralarm1(String member_id, Model model) {
-      List<DrivingVO> list1 = cMapper.drivingList(member_id);
-      List<RestsVO> list2 = cMapper.restsList(member_id);
-      model.addAttribute("list1", list1);
-      model.addAttribute("list2", list2);
+	   
+	  //System.out.println("member_id="+member_id);
+      List<DrivingVO> list3 = cMapper.drivingList(member_id);
+      //System.out.println(list3);
+      List<RestsVO> list4 = cMapper.restsList(member_id);
+      //System.out.println(list4);
+      
+      
+      model.addAttribute("list3", list3);
+      model.addAttribute("list4", list4);
+		
+      
+      List<AlarmsVO> list5 = cMapper.alarmsList(member_id);
+	  model.addAttribute("list5", list5);
+	  System.out.println("list5="+list5);
       return "useralarm";
    }
+   	
    
+   @RequestMapping("/rest_mn.do")
+   public String rest_mn(String member_id, Model model) {
+
+	   List<RestsVO> list2 = cMapper.adminrestsList(member_id);
+	   model.addAttribute("list2", list2);
+	   return "rest_mn";
+   }
+   
+   @RequestMapping("/sleep_mn.do")
+   public String sleep_mn(String member_id, Model model) {
+	   
+	   List<AlarmsVO> list1 = cMapper.adminalarmsList(member_id);
+	   model.addAttribute("list1", list1);
+	   return "sleep_mn";
+   }
+   
+	/*
+	 * //관리자 페이지
+	 * 
+	 * @RequestMapping("/useralarm.do") public String useralarm1(String member_id,
+	 * Model model) { List<DrivingVO> list1 = cMapper.drivingList(member_id);
+	 * List<RestsVO> list2 = cMapper.restsList(member_id);
+	 * model.addAttribute("list1", list1); model.addAttribute("list2", list2);
+	 * return "useralarm"; }
+	 */
 
    @RequestMapping("/usermain.do")
      public String usermain (String member_id,  Model model) {
@@ -217,21 +254,14 @@ public class PageController {
 
    }
    
-   @RequestMapping("/rest_mn.do")
-   public void rest_mn() {
-
-   }
+   
  
    @RequestMapping("/user_mn.do")
    public void user_mn() {
 
    }
    
-   @RequestMapping("/sleep_mn.do")
-   public void sleep_mn() {
-
-   }
- 
+   
    
    
 }

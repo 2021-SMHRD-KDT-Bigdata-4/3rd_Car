@@ -13,16 +13,37 @@
 	 select * from members where member_id= #{member_id} and password = #{password}
 	</select>
 	
+    
+    <!-- 유저 운전 리스트 -->
    <select id="drivingList" resultType="DrivingVO">
-
-    select driving_starttime, driving_endtime from drivings, members where drivings.member_id=members.member_id and members.member_id='1234'
-
+    select * from drivings, members where drivings.member_id=members.member_id and members.member_id=#{member_id} order by driving_id desc 
     </select>
     
-    <select id="restsList" resultType="restsVO">
-        select * from rests
+   <!-- 유저  휴식 리스트-->
+    <select id="restsList" resultType="RestsVO">
+        select * from rests where member_id=#{member_id} order by rest_id desc
     </select>
-
+	
+    <!-- 유저  졸음운전 알람 리스트-->
+    <select id="alarmsList" resultType="AlarmsVO">
+        select * from alarms where member_id=#{member_id} order by alarm_id desc
+    </select>
+    
+    <!-- 관리자 -유저 운전리스트 -->
+    <select id="admindrivingList" resultType="DrivingVO">
+    select *from drivings order by driving_id desc
+    </select>
+    
+    <!-- 관리자 - 유저  휴식 리스트-->
+    <select id="adminrestsList" resultType="restsVO">
+        select * from rests order by rest_id desc
+    </select>
+    
+    <!-- 관리자 -유저 운전리스트 -->
+    <select id="adminalarmsList" resultType="AlarmsVO">
+    select *from alarms order by alarm_id desc
+    </select>
+    
     <insert id="dstart" parameterType="DrivingVO">
       insert into drivings(driving_starttime,member_id) values(now(),#{member_id});
     </insert>

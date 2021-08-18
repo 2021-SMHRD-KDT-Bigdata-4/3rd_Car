@@ -41,9 +41,15 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
 	public int rest_start(RestsVO vo);
 	public int rest_end(RestsVO vo);
 	
-	//유저메인 화면 불러오기
+	//유저알람 테이블 불러오기
 	public List<DrivingVO> drivingList(String member_id);
     public List<RestsVO> restsList(String member_id);
+    public List<AlarmsVO> alarmsList(String member_id);
+    
+    //관리자 -유저 화면 불러오기
+    public List<DrivingVO> admindrivingList(String member_id); 
+    public List<RestsVO> adminrestsList(String member_id);
+    public List<AlarmsVO> adminalarmsList(String member_id);
     
     //차트만들기
     public List<AlarmCountVO> alarmcounts(AlarmsVO vo);
@@ -58,7 +64,15 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
        
     public void boardDelete(int idx);
 
-    public void memberInsert(MembersVO vo); 
+    public void memberInsert(MembersVO vo);
+
+	
+
+	
+
+	
+
+	
 	
     		
 }

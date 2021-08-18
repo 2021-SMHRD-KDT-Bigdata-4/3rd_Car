@@ -55,7 +55,7 @@ String id = vo.getMember_id();%>
    
    //===================================
        
-   
+   var timer;
 
 
    
@@ -76,7 +76,7 @@ String id = vo.getMember_id();%>
              });
         $("#realtime-video").show();
         
-        setInterval(function(){
+        timer = setInterval(function(){
             var member_id = '<%=id%>';
             var memberdata = {"member_id" : member_id};
               $.ajax({
@@ -140,6 +140,7 @@ String id = vo.getMember_id();%>
                    }
                   });
            $("#realtime-video").hide();
+           clearinterval(timer);
           } 
    
    function restStart() {
@@ -252,15 +253,11 @@ String id = vo.getMember_id();%>
                </header>
                <ul>
                   <li><a href="usermain.do">메인</a></li>
-                  </a>
-                  </li>
-                  <li><span class="opener">알람</span>
-                     <ul>
-                        <li><a href="useralarm.do">일자별 졸음 알람(일간)</a></li>
-                        <li><a href="useralarm2.do">시간별 졸음 알람(일간)</a></li>
-                        <li><a href="useralarm3.do">일자별 졸음 알람(월간)</a></li>
-                        <li><a href="useralarm4.do">시간별 졸음 알람(월간)</a></li>
-                     </ul></li>
+                  <li><a href="useralarm.do?member_id=${MembersVO.member_id}">일자별 졸음 알람(일간)</a></li>
+                  <li><a href="useralarm2.do">시간별 졸음 알람(일간)</a></li>
+                  <li><a href="useralarm3.do">일자별 졸음 알람(월간)</a></li>
+                  <li><a href="useralarm4.do">시간별 졸음 알람(월간)</a></li>
+                    
                   <li><a href="information.do">정보</a></li>
                   <li><a href="notice.do">공지사항</a></li>
                </ul>
