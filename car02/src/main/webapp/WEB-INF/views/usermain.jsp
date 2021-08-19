@@ -125,6 +125,7 @@ String id = vo.getMember_id();%>
       
    
    
+   
    function driveEnd() {
         var member_id = '<%=id%>';
         $.ajax({

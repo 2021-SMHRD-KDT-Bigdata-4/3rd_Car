@@ -55,6 +55,7 @@ public interface CMapper{ // new BMapper() --> SqlSessionFactoryBean
     public List<AlarmCountVO> alarm_counts(AlarmsVO vo);
     public List<AlarmCountVO> alarm_counts_admin(AlarmsVO vo);
     
+    
     //회원조회
     public List<MembersVO> member_List();
     

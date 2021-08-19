@@ -209,6 +209,7 @@ function aaa(dataa){
                   <div class="card-content">
                   	<div style="width:100%; height:200px; overflow:auto">
 
+
                      <!-- 여기서부터 우리가 원하는 표 -->
                      <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover"

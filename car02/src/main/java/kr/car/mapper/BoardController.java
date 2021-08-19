@@ -22,6 +22,7 @@ import kr.car.domain.MembersVO;
 
 
 
+
 //POJO
 @Controller
 public class BoardController {   // new BoardController(); -> Spring Container(DI)

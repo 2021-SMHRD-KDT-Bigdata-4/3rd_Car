@@ -15,6 +15,7 @@ SHOW TABLES;
 SELECT * FROM BOARD;
 DROP TABLE BOARD  cascade;
 
+
 create table BOARD(
    idx int not null auto_increment,   -- 자동증가컬럼(1,2,3.....)
    title varchar(100) not null,
